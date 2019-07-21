@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.tuhu</groupId>
+    <artifactId>ryt.demo-parent</artifactId>
+
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>ryt.demo-parent</name>
+    <description>Demo project for Spring Boot</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <properties>
+        <parent-project.version>0.0.1-SNAPSHOT</parent-project.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter</artifactId>
+                <version>2.0.1.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+                <version>2.0.1.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tuhu</groupId>
+                <artifactId>ryt.demo-api</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tuhu</groupId>
+                <artifactId>ryt.demo-dal</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tuhu</groupId>
+                <artifactId>ryt.demo-domain</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>ryt.demo-api</module>
+        <module>ryt.demo-dal</module>
+        <module>ryt.demo-domain</module>
+    </modules>
+
+
+</project>

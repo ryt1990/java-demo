@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 数据库驱动-->
+    <classPathEntry location="D:\Java\repository\net\sourceforge\jtds\jtds\1.2.8\jtds-1.2.8.jar"/>
+    <context id="VenueGenerator" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!--关闭时间注释 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="net.sourceforge.jtds.jdbc.Driver"
+                        connectionURL="jdbc:jtds:sqlserver://172.16.20.1:1433;DatabaseName=gungnir"
+                        userId="sqluser"
+                        password="itsme999">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成model的包名和位置-->
+        <javaModelGenerator targetPackage="com.ryt.demo.dal.mssql.entity" targetProject="../../java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射XML文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="../../resources/sqlmap">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成Mapper文件包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ryt.demo.dal.mssql.mapper"
+                             targetProject="../../java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 要生成哪些表-->
+        <table tableName="tbl_OrderList"
+               domainObjectName="OrderList"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="PKID" sqlStatement="SqlServer" type="post" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

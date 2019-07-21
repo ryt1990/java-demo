@@ -1,0 +1,1648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ryt.demo.dal.mssql.mapper.OrderListMapper">
+    <resultMap id="BaseResultMap" type="com.ryt.demo.dal.mssql.entity.OrderList">
+        <id column="PKID" jdbcType="INTEGER" property="PKID"/>
+        <result column="OrderID" jdbcType="INTEGER" property="orderID"/>
+        <result column="OrderNo" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="PID" jdbcType="VARCHAR" property="PID"/>
+        <result column="Poid" jdbcType="INTEGER" property="poid"/>
+        <result column="Category" jdbcType="VARCHAR" property="category"/>
+        <result column="Name" jdbcType="VARCHAR" property="name"/>
+        <result column="Size" jdbcType="VARCHAR" property="size"/>
+        <result column="Remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="CarCode" jdbcType="VARCHAR" property="carCode"/>
+        <result column="CarName" jdbcType="VARCHAR" property="carName"/>
+        <result column="Num" jdbcType="INTEGER" property="num"/>
+        <result column="MarkedPrice" jdbcType="DECIMAL" property="markedPrice"/>
+        <result column="Discount" jdbcType="DECIMAL" property="discount"/>
+        <result column="Price" jdbcType="DECIMAL" property="price"/>
+        <result column="TotalDiscount" jdbcType="DECIMAL" property="totalDiscount"/>
+        <result column="TotalPrice" jdbcType="DECIMAL" property="totalPrice"/>
+        <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
+        <result column="PurchasePrice" jdbcType="DECIMAL" property="purchasePrice"/>
+        <result column="Cost" jdbcType="DECIMAL" property="cost"/>
+        <result column="InstallFee" jdbcType="DECIMAL" property="installFee"/>
+        <result column="Vendor" jdbcType="VARCHAR" property="vendor"/>
+        <result column="IsPaid" jdbcType="BIT" property="isPaid"/>
+        <result column="PaidVia" jdbcType="VARCHAR" property="paidVia"/>
+        <result column="InstockDate" jdbcType="TIMESTAMP" property="instockDate"/>
+        <result column="PaidDate" jdbcType="TIMESTAMP" property="paidDate"/>
+        <result column="PurchaseStatus" jdbcType="VARCHAR" property="purchaseStatus"/>
+        <result column="IsInstallFeePaid" jdbcType="BIT" property="isInstallFeePaid"/>
+        <result column="InstallFeePaidDate" jdbcType="TIMESTAMP" property="installFeePaidDate"/>
+        <result column="Deleted" jdbcType="BIT" property="deleted"/>
+        <result column="CreateDate" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="Commission" jdbcType="DOUBLE" property="commission"/>
+        <result column="HCNum" jdbcType="INTEGER" property="HCNum"/>
+        <result column="OrigProdId" jdbcType="INTEGER" property="origProdId"/>
+        <result column="ProductType" jdbcType="INTEGER" property="productType"/>
+        <result column="ParentID" jdbcType="INTEGER" property="parentID"/>
+        <result column="WeekYear" jdbcType="CHAR" property="weekYear"/>
+        <result column="RefID" jdbcType="VARCHAR" property="refID"/>
+        <result column="PromotionCode" jdbcType="INTEGER" property="promotionCode"/>
+        <result column="PromotionMoney" jdbcType="DECIMAL" property="promotionMoney"/>
+        <result column="MatchedProducts" jdbcType="VARCHAR" property="matchedProducts"/>
+        <result column="IsDaiFa" jdbcType="BIT" property="isDaiFa"/>
+        <result column="NodeNo" jdbcType="VARCHAR" property="nodeNo"/>
+        <result column="TotalManualDiscount" jdbcType="DECIMAL" property="totalManualDiscount"/>
+        <result column="ListPrice" jdbcType="DECIMAL" property="listPrice"/>
+        <result column="PayPrice" jdbcType="DECIMAL" property="payPrice"/>
+        <result column="TuhuCost" jdbcType="DECIMAL" property="tuhuCost"/>
+        <result column="DisplayName" jdbcType="VARCHAR" property="displayName"/>
+        <result column="Amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="Unit" jdbcType="VARCHAR" property="unit"/>
+        <result column="ProductName" jdbcType="VARCHAR" property="productName"/>
+        <result column="DisplayUnit" jdbcType="VARCHAR" property="displayUnit"/>
+        <result column="DiscountSplitCoda" jdbcType="DECIMAL" property="discountSplitCoda"/>
+        <result column="TaxRate" jdbcType="DECIMAL" property="taxRate"/>
+        <result column="NoTaxCost" jdbcType="DECIMAL" property="noTaxCost"/>
+        <result column="NoTaxTuhuCost" jdbcType="DECIMAL" property="noTaxTuhuCost"/>
+        <result column="IDCode" jdbcType="CHAR" property="IDCode"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ryt.demo.dal.mssql.entity.OrderListWithBLOBs">
+        <result column="FUPID" jdbcType="CLOB" property="FUPID"/>
+        <result column="ExtCol" jdbcType="CLOB" property="extCol"/>
+        <result column="RowVersions" jdbcType="BINARY" property="rowVersions"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        PKID, OrderID, OrderNo, PID, Poid, Category, Name, Size, Remark, CarCode, CarName,
+        Num, MarkedPrice, Discount, Price, TotalDiscount, TotalPrice, LastUpdateTime, PurchasePrice,
+        Cost, InstallFee, Vendor, IsPaid, PaidVia, InstockDate, PaidDate, PurchaseStatus,
+        IsInstallFeePaid, InstallFeePaidDate, Deleted, CreateDate, Commission, HCNum, OrigProdId,
+        ProductType, ParentID, WeekYear, RefID, PromotionCode, PromotionMoney, MatchedProducts,
+        IsDaiFa, NodeNo, TotalManualDiscount, ListPrice, PayPrice, TuhuCost, DisplayName,
+        Amount, Unit, ProductName, DisplayUnit, DiscountSplitCoda, TaxRate, NoTaxCost, NoTaxTuhuCost,
+        IDCode
+    </sql>
+    <sql id="Blob_Column_List">
+        FUPID, ExtCol, RowVersions
+    </sql>
+    <select id="selectByExampleWithBLOBs" parameterType="com.ryt.demo.dal.mssql.entity.OrderListExample"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tbl_OrderList
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" parameterType="com.ryt.demo.dal.mssql.entity.OrderListExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from tbl_OrderList
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="offSet !=null and length != null">
+            limit ${offSet}, ${length}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tbl_OrderList
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </select>
+    <insert id="insertSelective" parameterType="com.ryt.demo.dal.mssql.entity.OrderListWithBLOBs">
+        <selectKey keyProperty="PKID" order="AFTER" resultType="java.lang.Integer">
+            SELECT SCOPE_IDENTITY()
+        </selectKey>
+        insert into tbl_OrderList
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderID != null">
+                OrderID,
+            </if>
+            <if test="orderNo != null">
+                OrderNo,
+            </if>
+            <if test="PID != null">
+                PID,
+            </if>
+            <if test="poid != null">
+                Poid,
+            </if>
+            <if test="category != null">
+                Category,
+            </if>
+            <if test="name != null">
+                Name,
+            </if>
+            <if test="size != null">
+                Size,
+            </if>
+            <if test="remark != null">
+                Remark,
+            </if>
+            <if test="carCode != null">
+                CarCode,
+            </if>
+            <if test="carName != null">
+                CarName,
+            </if>
+            <if test="num != null">
+                Num,
+            </if>
+            <if test="markedPrice != null">
+                MarkedPrice,
+            </if>
+            <if test="discount != null">
+                Discount,
+            </if>
+            <if test="price != null">
+                Price,
+            </if>
+            <if test="totalDiscount != null">
+                TotalDiscount,
+            </if>
+            <if test="totalPrice != null">
+                TotalPrice,
+            </if>
+            <if test="lastUpdateTime != null">
+                LastUpdateTime,
+            </if>
+            <if test="purchasePrice != null">
+                PurchasePrice,
+            </if>
+            <if test="cost != null">
+                Cost,
+            </if>
+            <if test="installFee != null">
+                InstallFee,
+            </if>
+            <if test="vendor != null">
+                Vendor,
+            </if>
+            <if test="isPaid != null">
+                IsPaid,
+            </if>
+            <if test="paidVia != null">
+                PaidVia,
+            </if>
+            <if test="instockDate != null">
+                InstockDate,
+            </if>
+            <if test="paidDate != null">
+                PaidDate,
+            </if>
+            <if test="purchaseStatus != null">
+                PurchaseStatus,
+            </if>
+            <if test="isInstallFeePaid != null">
+                IsInstallFeePaid,
+            </if>
+            <if test="installFeePaidDate != null">
+                InstallFeePaidDate,
+            </if>
+            <if test="deleted != null">
+                Deleted,
+            </if>
+            <if test="createDate != null">
+                CreateDate,
+            </if>
+            <if test="commission != null">
+                Commission,
+            </if>
+            <if test="HCNum != null">
+                HCNum,
+            </if>
+            <if test="origProdId != null">
+                OrigProdId,
+            </if>
+            <if test="productType != null">
+                ProductType,
+            </if>
+            <if test="parentID != null">
+                ParentID,
+            </if>
+            <if test="weekYear != null">
+                WeekYear,
+            </if>
+            <if test="refID != null">
+                RefID,
+            </if>
+            <if test="promotionCode != null">
+                PromotionCode,
+            </if>
+            <if test="promotionMoney != null">
+                PromotionMoney,
+            </if>
+            <if test="matchedProducts != null">
+                MatchedProducts,
+            </if>
+            <if test="isDaiFa != null">
+                IsDaiFa,
+            </if>
+            <if test="nodeNo != null">
+                NodeNo,
+            </if>
+            <if test="totalManualDiscount != null">
+                TotalManualDiscount,
+            </if>
+            <if test="listPrice != null">
+                ListPrice,
+            </if>
+            <if test="payPrice != null">
+                PayPrice,
+            </if>
+            <if test="tuhuCost != null">
+                TuhuCost,
+            </if>
+            <if test="displayName != null">
+                DisplayName,
+            </if>
+            <if test="amount != null">
+                Amount,
+            </if>
+            <if test="unit != null">
+                Unit,
+            </if>
+            <if test="productName != null">
+                ProductName,
+            </if>
+            <if test="displayUnit != null">
+                DisplayUnit,
+            </if>
+            <if test="discountSplitCoda != null">
+                DiscountSplitCoda,
+            </if>
+            <if test="taxRate != null">
+                TaxRate,
+            </if>
+            <if test="noTaxCost != null">
+                NoTaxCost,
+            </if>
+            <if test="noTaxTuhuCost != null">
+                NoTaxTuhuCost,
+            </if>
+            <if test="IDCode != null">
+                IDCode,
+            </if>
+            <if test="FUPID != null">
+                FUPID,
+            </if>
+            <if test="extCol != null">
+                ExtCol,
+            </if>
+            <if test="rowVersions != null">
+                RowVersions,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderID != null">
+                #{orderID,jdbcType=INTEGER},
+            </if>
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="PID != null">
+                #{PID,jdbcType=VARCHAR},
+            </if>
+            <if test="poid != null">
+                #{poid,jdbcType=INTEGER},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="size != null">
+                #{size,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="carCode != null">
+                #{carCode,jdbcType=VARCHAR},
+            </if>
+            <if test="carName != null">
+                #{carName,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="markedPrice != null">
+                #{markedPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="discount != null">
+                #{discount,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="totalDiscount != null">
+                #{totalDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="purchasePrice != null">
+                #{purchasePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="cost != null">
+                #{cost,jdbcType=DECIMAL},
+            </if>
+            <if test="installFee != null">
+                #{installFee,jdbcType=DECIMAL},
+            </if>
+            <if test="vendor != null">
+                #{vendor,jdbcType=VARCHAR},
+            </if>
+            <if test="isPaid != null">
+                #{isPaid,jdbcType=BIT},
+            </if>
+            <if test="paidVia != null">
+                #{paidVia,jdbcType=VARCHAR},
+            </if>
+            <if test="instockDate != null">
+                #{instockDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paidDate != null">
+                #{paidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="purchaseStatus != null">
+                #{purchaseStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="isInstallFeePaid != null">
+                #{isInstallFeePaid,jdbcType=BIT},
+            </if>
+            <if test="installFeePaidDate != null">
+                #{installFeePaidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commission != null">
+                #{commission,jdbcType=DOUBLE},
+            </if>
+            <if test="HCNum != null">
+                #{HCNum,jdbcType=INTEGER},
+            </if>
+            <if test="origProdId != null">
+                #{origProdId,jdbcType=INTEGER},
+            </if>
+            <if test="productType != null">
+                #{productType,jdbcType=INTEGER},
+            </if>
+            <if test="parentID != null">
+                #{parentID,jdbcType=INTEGER},
+            </if>
+            <if test="weekYear != null">
+                #{weekYear,jdbcType=CHAR},
+            </if>
+            <if test="refID != null">
+                #{refID,jdbcType=VARCHAR},
+            </if>
+            <if test="promotionCode != null">
+                #{promotionCode,jdbcType=INTEGER},
+            </if>
+            <if test="promotionMoney != null">
+                #{promotionMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="matchedProducts != null">
+                #{matchedProducts,jdbcType=VARCHAR},
+            </if>
+            <if test="isDaiFa != null">
+                #{isDaiFa,jdbcType=BIT},
+            </if>
+            <if test="nodeNo != null">
+                #{nodeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="totalManualDiscount != null">
+                #{totalManualDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="listPrice != null">
+                #{listPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payPrice != null">
+                #{payPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="tuhuCost != null">
+                #{tuhuCost,jdbcType=DECIMAL},
+            </if>
+            <if test="displayName != null">
+                #{displayName,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="unit != null">
+                #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="displayUnit != null">
+                #{displayUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="discountSplitCoda != null">
+                #{discountSplitCoda,jdbcType=DECIMAL},
+            </if>
+            <if test="taxRate != null">
+                #{taxRate,jdbcType=DECIMAL},
+            </if>
+            <if test="noTaxCost != null">
+                #{noTaxCost,jdbcType=DECIMAL},
+            </if>
+            <if test="noTaxTuhuCost != null">
+                #{noTaxTuhuCost,jdbcType=DECIMAL},
+            </if>
+            <if test="IDCode != null">
+                #{IDCode,jdbcType=CHAR},
+            </if>
+            <if test="FUPID != null">
+                #{FUPID,jdbcType=CLOB},
+            </if>
+            <if test="extCol != null">
+                #{extCol,jdbcType=CLOB},
+            </if>
+            <if test="rowVersions != null">
+                #{rowVersions,jdbcType=BINARY},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ryt.demo.dal.mssql.entity.OrderListWithBLOBs">
+        update tbl_OrderList
+        <set>
+            <if test="orderID != null">
+                OrderID = #{orderID,jdbcType=INTEGER},
+            </if>
+            <if test="orderNo != null">
+                OrderNo = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="PID != null">
+                PID = #{PID,jdbcType=VARCHAR},
+            </if>
+            <if test="poid != null">
+                Poid = #{poid,jdbcType=INTEGER},
+            </if>
+            <if test="category != null">
+                Category = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                Name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="size != null">
+                Size = #{size,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                Remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="carCode != null">
+                CarCode = #{carCode,jdbcType=VARCHAR},
+            </if>
+            <if test="carName != null">
+                CarName = #{carName,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                Num = #{num,jdbcType=INTEGER},
+            </if>
+            <if test="markedPrice != null">
+                MarkedPrice = #{markedPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="discount != null">
+                Discount = #{discount,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null">
+                Price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="totalDiscount != null">
+                TotalDiscount = #{totalDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="totalPrice != null">
+                TotalPrice = #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="lastUpdateTime != null">
+                LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="purchasePrice != null">
+                PurchasePrice = #{purchasePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="cost != null">
+                Cost = #{cost,jdbcType=DECIMAL},
+            </if>
+            <if test="installFee != null">
+                InstallFee = #{installFee,jdbcType=DECIMAL},
+            </if>
+            <if test="vendor != null">
+                Vendor = #{vendor,jdbcType=VARCHAR},
+            </if>
+            <if test="isPaid != null">
+                IsPaid = #{isPaid,jdbcType=BIT},
+            </if>
+            <if test="paidVia != null">
+                PaidVia = #{paidVia,jdbcType=VARCHAR},
+            </if>
+            <if test="instockDate != null">
+                InstockDate = #{instockDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paidDate != null">
+                PaidDate = #{paidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="purchaseStatus != null">
+                PurchaseStatus = #{purchaseStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="isInstallFeePaid != null">
+                IsInstallFeePaid = #{isInstallFeePaid,jdbcType=BIT},
+            </if>
+            <if test="installFeePaidDate != null">
+                InstallFeePaidDate = #{installFeePaidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                Deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="createDate != null">
+                CreateDate = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commission != null">
+                Commission = #{commission,jdbcType=DOUBLE},
+            </if>
+            <if test="HCNum != null">
+                HCNum = #{HCNum,jdbcType=INTEGER},
+            </if>
+            <if test="origProdId != null">
+                OrigProdId = #{origProdId,jdbcType=INTEGER},
+            </if>
+            <if test="productType != null">
+                ProductType = #{productType,jdbcType=INTEGER},
+            </if>
+            <if test="parentID != null">
+                ParentID = #{parentID,jdbcType=INTEGER},
+            </if>
+            <if test="weekYear != null">
+                WeekYear = #{weekYear,jdbcType=CHAR},
+            </if>
+            <if test="refID != null">
+                RefID = #{refID,jdbcType=VARCHAR},
+            </if>
+            <if test="promotionCode != null">
+                PromotionCode = #{promotionCode,jdbcType=INTEGER},
+            </if>
+            <if test="promotionMoney != null">
+                PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="matchedProducts != null">
+                MatchedProducts = #{matchedProducts,jdbcType=VARCHAR},
+            </if>
+            <if test="isDaiFa != null">
+                IsDaiFa = #{isDaiFa,jdbcType=BIT},
+            </if>
+            <if test="nodeNo != null">
+                NodeNo = #{nodeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="totalManualDiscount != null">
+                TotalManualDiscount = #{totalManualDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="listPrice != null">
+                ListPrice = #{listPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payPrice != null">
+                PayPrice = #{payPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="tuhuCost != null">
+                TuhuCost = #{tuhuCost,jdbcType=DECIMAL},
+            </if>
+            <if test="displayName != null">
+                DisplayName = #{displayName,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                Amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="unit != null">
+                Unit = #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                ProductName = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="displayUnit != null">
+                DisplayUnit = #{displayUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="discountSplitCoda != null">
+                DiscountSplitCoda = #{discountSplitCoda,jdbcType=DECIMAL},
+            </if>
+            <if test="taxRate != null">
+                TaxRate = #{taxRate,jdbcType=DECIMAL},
+            </if>
+            <if test="noTaxCost != null">
+                NoTaxCost = #{noTaxCost,jdbcType=DECIMAL},
+            </if>
+            <if test="noTaxTuhuCost != null">
+                NoTaxTuhuCost = #{noTaxTuhuCost,jdbcType=DECIMAL},
+            </if>
+            <if test="IDCode != null">
+                IDCode = #{IDCode,jdbcType=CHAR},
+            </if>
+            <if test="FUPID != null">
+                FUPID = #{FUPID,jdbcType=CLOB},
+            </if>
+            <if test="extCol != null">
+                ExtCol = #{extCol,jdbcType=CLOB},
+            </if>
+            <if test="rowVersions != null">
+                RowVersions = #{rowVersions,jdbcType=BINARY},
+            </if>
+        </set>
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ryt.demo.dal.mssql.entity.OrderListWithBLOBs">
+        update tbl_OrderList
+        set OrderID = #{orderID,jdbcType=INTEGER},
+        OrderNo = #{orderNo,jdbcType=VARCHAR},
+        PID = #{PID,jdbcType=VARCHAR},
+        Poid = #{poid,jdbcType=INTEGER},
+        Category = #{category,jdbcType=VARCHAR},
+        Name = #{name,jdbcType=VARCHAR},
+        Size = #{size,jdbcType=VARCHAR},
+        Remark = #{remark,jdbcType=VARCHAR},
+        CarCode = #{carCode,jdbcType=VARCHAR},
+        CarName = #{carName,jdbcType=VARCHAR},
+        Num = #{num,jdbcType=INTEGER},
+        MarkedPrice = #{markedPrice,jdbcType=DECIMAL},
+        Discount = #{discount,jdbcType=DECIMAL},
+        Price = #{price,jdbcType=DECIMAL},
+        TotalDiscount = #{totalDiscount,jdbcType=DECIMAL},
+        TotalPrice = #{totalPrice,jdbcType=DECIMAL},
+        LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+        PurchasePrice = #{purchasePrice,jdbcType=DECIMAL},
+        Cost = #{cost,jdbcType=DECIMAL},
+        InstallFee = #{installFee,jdbcType=DECIMAL},
+        Vendor = #{vendor,jdbcType=VARCHAR},
+        IsPaid = #{isPaid,jdbcType=BIT},
+        PaidVia = #{paidVia,jdbcType=VARCHAR},
+        InstockDate = #{instockDate,jdbcType=TIMESTAMP},
+        PaidDate = #{paidDate,jdbcType=TIMESTAMP},
+        PurchaseStatus = #{purchaseStatus,jdbcType=VARCHAR},
+        IsInstallFeePaid = #{isInstallFeePaid,jdbcType=BIT},
+        InstallFeePaidDate = #{installFeePaidDate,jdbcType=TIMESTAMP},
+        Deleted = #{deleted,jdbcType=BIT},
+        CreateDate = #{createDate,jdbcType=TIMESTAMP},
+        Commission = #{commission,jdbcType=DOUBLE},
+        HCNum = #{HCNum,jdbcType=INTEGER},
+        OrigProdId = #{origProdId,jdbcType=INTEGER},
+        ProductType = #{productType,jdbcType=INTEGER},
+        ParentID = #{parentID,jdbcType=INTEGER},
+        WeekYear = #{weekYear,jdbcType=CHAR},
+        RefID = #{refID,jdbcType=VARCHAR},
+        PromotionCode = #{promotionCode,jdbcType=INTEGER},
+        PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+        MatchedProducts = #{matchedProducts,jdbcType=VARCHAR},
+        IsDaiFa = #{isDaiFa,jdbcType=BIT},
+        NodeNo = #{nodeNo,jdbcType=VARCHAR},
+        TotalManualDiscount = #{totalManualDiscount,jdbcType=DECIMAL},
+        ListPrice = #{listPrice,jdbcType=DECIMAL},
+        PayPrice = #{payPrice,jdbcType=DECIMAL},
+        TuhuCost = #{tuhuCost,jdbcType=DECIMAL},
+        DisplayName = #{displayName,jdbcType=VARCHAR},
+        Amount = #{amount,jdbcType=DECIMAL},
+        Unit = #{unit,jdbcType=VARCHAR},
+        ProductName = #{productName,jdbcType=VARCHAR},
+        DisplayUnit = #{displayUnit,jdbcType=VARCHAR},
+        DiscountSplitCoda = #{discountSplitCoda,jdbcType=DECIMAL},
+        TaxRate = #{taxRate,jdbcType=DECIMAL},
+        NoTaxCost = #{noTaxCost,jdbcType=DECIMAL},
+        NoTaxTuhuCost = #{noTaxTuhuCost,jdbcType=DECIMAL},
+        IDCode = #{IDCode,jdbcType=CHAR},
+        FUPID = #{FUPID,jdbcType=CLOB},
+        ExtCol = #{extCol,jdbcType=CLOB},
+        RowVersions = #{rowVersions,jdbcType=BINARY}
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ryt.demo.dal.mssql.entity.OrderList">
+        update tbl_OrderList
+        set OrderID = #{orderID,jdbcType=INTEGER},
+        OrderNo = #{orderNo,jdbcType=VARCHAR},
+        PID = #{PID,jdbcType=VARCHAR},
+        Poid = #{poid,jdbcType=INTEGER},
+        Category = #{category,jdbcType=VARCHAR},
+        Name = #{name,jdbcType=VARCHAR},
+        Size = #{size,jdbcType=VARCHAR},
+        Remark = #{remark,jdbcType=VARCHAR},
+        CarCode = #{carCode,jdbcType=VARCHAR},
+        CarName = #{carName,jdbcType=VARCHAR},
+        Num = #{num,jdbcType=INTEGER},
+        MarkedPrice = #{markedPrice,jdbcType=DECIMAL},
+        Discount = #{discount,jdbcType=DECIMAL},
+        Price = #{price,jdbcType=DECIMAL},
+        TotalDiscount = #{totalDiscount,jdbcType=DECIMAL},
+        TotalPrice = #{totalPrice,jdbcType=DECIMAL},
+        LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+        PurchasePrice = #{purchasePrice,jdbcType=DECIMAL},
+        Cost = #{cost,jdbcType=DECIMAL},
+        InstallFee = #{installFee,jdbcType=DECIMAL},
+        Vendor = #{vendor,jdbcType=VARCHAR},
+        IsPaid = #{isPaid,jdbcType=BIT},
+        PaidVia = #{paidVia,jdbcType=VARCHAR},
+        InstockDate = #{instockDate,jdbcType=TIMESTAMP},
+        PaidDate = #{paidDate,jdbcType=TIMESTAMP},
+        PurchaseStatus = #{purchaseStatus,jdbcType=VARCHAR},
+        IsInstallFeePaid = #{isInstallFeePaid,jdbcType=BIT},
+        InstallFeePaidDate = #{installFeePaidDate,jdbcType=TIMESTAMP},
+        Deleted = #{deleted,jdbcType=BIT},
+        CreateDate = #{createDate,jdbcType=TIMESTAMP},
+        Commission = #{commission,jdbcType=DOUBLE},
+        HCNum = #{HCNum,jdbcType=INTEGER},
+        OrigProdId = #{origProdId,jdbcType=INTEGER},
+        ProductType = #{productType,jdbcType=INTEGER},
+        ParentID = #{parentID,jdbcType=INTEGER},
+        WeekYear = #{weekYear,jdbcType=CHAR},
+        RefID = #{refID,jdbcType=VARCHAR},
+        PromotionCode = #{promotionCode,jdbcType=INTEGER},
+        PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+        MatchedProducts = #{matchedProducts,jdbcType=VARCHAR},
+        IsDaiFa = #{isDaiFa,jdbcType=BIT},
+        NodeNo = #{nodeNo,jdbcType=VARCHAR},
+        TotalManualDiscount = #{totalManualDiscount,jdbcType=DECIMAL},
+        ListPrice = #{listPrice,jdbcType=DECIMAL},
+        PayPrice = #{payPrice,jdbcType=DECIMAL},
+        TuhuCost = #{tuhuCost,jdbcType=DECIMAL},
+        DisplayName = #{displayName,jdbcType=VARCHAR},
+        Amount = #{amount,jdbcType=DECIMAL},
+        Unit = #{unit,jdbcType=VARCHAR},
+        ProductName = #{productName,jdbcType=VARCHAR},
+        DisplayUnit = #{displayUnit,jdbcType=VARCHAR},
+        DiscountSplitCoda = #{discountSplitCoda,jdbcType=DECIMAL},
+        TaxRate = #{taxRate,jdbcType=DECIMAL},
+        NoTaxCost = #{noTaxCost,jdbcType=DECIMAL},
+        NoTaxTuhuCost = #{noTaxTuhuCost,jdbcType=DECIMAL},
+        IDCode = #{IDCode,jdbcType=CHAR}
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+    <resultMap id="BaseResultMap" type="com.ryt.demo.dal.mssql.entity.OrderList">
+        <id column="PKID" jdbcType="INTEGER" property="PKID"/>
+        <result column="OrderID" jdbcType="INTEGER" property="orderID"/>
+        <result column="OrderNo" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="PID" jdbcType="VARCHAR" property="PID"/>
+        <result column="Poid" jdbcType="INTEGER" property="poid"/>
+        <result column="Category" jdbcType="VARCHAR" property="category"/>
+        <result column="Name" jdbcType="VARCHAR" property="name"/>
+        <result column="Size" jdbcType="VARCHAR" property="size"/>
+        <result column="Remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="CarCode" jdbcType="VARCHAR" property="carCode"/>
+        <result column="CarName" jdbcType="VARCHAR" property="carName"/>
+        <result column="Num" jdbcType="INTEGER" property="num"/>
+        <result column="MarkedPrice" jdbcType="DECIMAL" property="markedPrice"/>
+        <result column="Discount" jdbcType="DECIMAL" property="discount"/>
+        <result column="Price" jdbcType="DECIMAL" property="price"/>
+        <result column="TotalDiscount" jdbcType="DECIMAL" property="totalDiscount"/>
+        <result column="TotalPrice" jdbcType="DECIMAL" property="totalPrice"/>
+        <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
+        <result column="PurchasePrice" jdbcType="DECIMAL" property="purchasePrice"/>
+        <result column="Cost" jdbcType="DECIMAL" property="cost"/>
+        <result column="InstallFee" jdbcType="DECIMAL" property="installFee"/>
+        <result column="Vendor" jdbcType="VARCHAR" property="vendor"/>
+        <result column="IsPaid" jdbcType="BIT" property="isPaid"/>
+        <result column="PaidVia" jdbcType="VARCHAR" property="paidVia"/>
+        <result column="InstockDate" jdbcType="TIMESTAMP" property="instockDate"/>
+        <result column="PaidDate" jdbcType="TIMESTAMP" property="paidDate"/>
+        <result column="PurchaseStatus" jdbcType="VARCHAR" property="purchaseStatus"/>
+        <result column="IsInstallFeePaid" jdbcType="BIT" property="isInstallFeePaid"/>
+        <result column="InstallFeePaidDate" jdbcType="TIMESTAMP" property="installFeePaidDate"/>
+        <result column="Deleted" jdbcType="BIT" property="deleted"/>
+        <result column="CreateDate" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="Commission" jdbcType="DOUBLE" property="commission"/>
+        <result column="HCNum" jdbcType="INTEGER" property="HCNum"/>
+        <result column="OrigProdId" jdbcType="INTEGER" property="origProdId"/>
+        <result column="ProductType" jdbcType="INTEGER" property="productType"/>
+        <result column="ParentID" jdbcType="INTEGER" property="parentID"/>
+        <result column="WeekYear" jdbcType="CHAR" property="weekYear"/>
+        <result column="RefID" jdbcType="VARCHAR" property="refID"/>
+        <result column="PromotionCode" jdbcType="INTEGER" property="promotionCode"/>
+        <result column="PromotionMoney" jdbcType="DECIMAL" property="promotionMoney"/>
+        <result column="MatchedProducts" jdbcType="VARCHAR" property="matchedProducts"/>
+        <result column="IsDaiFa" jdbcType="BIT" property="isDaiFa"/>
+        <result column="NodeNo" jdbcType="VARCHAR" property="nodeNo"/>
+        <result column="TotalManualDiscount" jdbcType="DECIMAL" property="totalManualDiscount"/>
+        <result column="ListPrice" jdbcType="DECIMAL" property="listPrice"/>
+        <result column="PayPrice" jdbcType="DECIMAL" property="payPrice"/>
+        <result column="TuhuCost" jdbcType="DECIMAL" property="tuhuCost"/>
+        <result column="DisplayName" jdbcType="VARCHAR" property="displayName"/>
+        <result column="Amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="Unit" jdbcType="VARCHAR" property="unit"/>
+        <result column="ProductName" jdbcType="VARCHAR" property="productName"/>
+        <result column="DisplayUnit" jdbcType="VARCHAR" property="displayUnit"/>
+        <result column="DiscountSplitCoda" jdbcType="DECIMAL" property="discountSplitCoda"/>
+        <result column="TaxRate" jdbcType="DECIMAL" property="taxRate"/>
+        <result column="NoTaxCost" jdbcType="DECIMAL" property="noTaxCost"/>
+        <result column="NoTaxTuhuCost" jdbcType="DECIMAL" property="noTaxTuhuCost"/>
+        <result column="IDCode" jdbcType="CHAR" property="IDCode"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ryt.demo.dal.mssql.entity.OrderListWithBLOBs">
+        <result column="FUPID" jdbcType="CLOB" property="FUPID"/>
+        <result column="ExtCol" jdbcType="CLOB" property="extCol"/>
+        <result column="RowVersions" jdbcType="BINARY" property="rowVersions"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        PKID, OrderID, OrderNo, PID, Poid, Category, Name, Size, Remark, CarCode, CarName,
+        Num, MarkedPrice, Discount, Price, TotalDiscount, TotalPrice, LastUpdateTime, PurchasePrice,
+        Cost, InstallFee, Vendor, IsPaid, PaidVia, InstockDate, PaidDate, PurchaseStatus,
+        IsInstallFeePaid, InstallFeePaidDate, Deleted, CreateDate, Commission, HCNum, OrigProdId,
+        ProductType, ParentID, WeekYear, RefID, PromotionCode, PromotionMoney, MatchedProducts,
+        IsDaiFa, NodeNo, TotalManualDiscount, ListPrice, PayPrice, TuhuCost, DisplayName,
+        Amount, Unit, ProductName, DisplayUnit, DiscountSplitCoda, TaxRate, NoTaxCost, NoTaxTuhuCost,
+        IDCode
+    </sql>
+    <sql id="Blob_Column_List">
+        FUPID, ExtCol, RowVersions
+    </sql>
+    <select id="selectByExampleWithBLOBs" parameterType="com.ryt.demo.dal.mssql.entity.OrderListExample"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tbl_OrderList
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" parameterType="com.ryt.demo.dal.mssql.entity.OrderListExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from tbl_OrderList
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="offSet !=null and length != null">
+            limit ${offSet}, ${length}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tbl_OrderList
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </select>
+    <insert id="insertSelective" parameterType="com.ryt.demo.dal.mssql.entity.OrderListWithBLOBs">
+        <selectKey keyProperty="PKID" order="AFTER" resultType="java.lang.Integer">
+            SELECT SCOPE_IDENTITY()
+        </selectKey>
+        insert into tbl_OrderList
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderID != null">
+                OrderID,
+            </if>
+            <if test="orderNo != null">
+                OrderNo,
+            </if>
+            <if test="PID != null">
+                PID,
+            </if>
+            <if test="poid != null">
+                Poid,
+            </if>
+            <if test="category != null">
+                Category,
+            </if>
+            <if test="name != null">
+                Name,
+            </if>
+            <if test="size != null">
+                Size,
+            </if>
+            <if test="remark != null">
+                Remark,
+            </if>
+            <if test="carCode != null">
+                CarCode,
+            </if>
+            <if test="carName != null">
+                CarName,
+            </if>
+            <if test="num != null">
+                Num,
+            </if>
+            <if test="markedPrice != null">
+                MarkedPrice,
+            </if>
+            <if test="discount != null">
+                Discount,
+            </if>
+            <if test="price != null">
+                Price,
+            </if>
+            <if test="totalDiscount != null">
+                TotalDiscount,
+            </if>
+            <if test="totalPrice != null">
+                TotalPrice,
+            </if>
+            <if test="lastUpdateTime != null">
+                LastUpdateTime,
+            </if>
+            <if test="purchasePrice != null">
+                PurchasePrice,
+            </if>
+            <if test="cost != null">
+                Cost,
+            </if>
+            <if test="installFee != null">
+                InstallFee,
+            </if>
+            <if test="vendor != null">
+                Vendor,
+            </if>
+            <if test="isPaid != null">
+                IsPaid,
+            </if>
+            <if test="paidVia != null">
+                PaidVia,
+            </if>
+            <if test="instockDate != null">
+                InstockDate,
+            </if>
+            <if test="paidDate != null">
+                PaidDate,
+            </if>
+            <if test="purchaseStatus != null">
+                PurchaseStatus,
+            </if>
+            <if test="isInstallFeePaid != null">
+                IsInstallFeePaid,
+            </if>
+            <if test="installFeePaidDate != null">
+                InstallFeePaidDate,
+            </if>
+            <if test="deleted != null">
+                Deleted,
+            </if>
+            <if test="createDate != null">
+                CreateDate,
+            </if>
+            <if test="commission != null">
+                Commission,
+            </if>
+            <if test="HCNum != null">
+                HCNum,
+            </if>
+            <if test="origProdId != null">
+                OrigProdId,
+            </if>
+            <if test="productType != null">
+                ProductType,
+            </if>
+            <if test="parentID != null">
+                ParentID,
+            </if>
+            <if test="weekYear != null">
+                WeekYear,
+            </if>
+            <if test="refID != null">
+                RefID,
+            </if>
+            <if test="promotionCode != null">
+                PromotionCode,
+            </if>
+            <if test="promotionMoney != null">
+                PromotionMoney,
+            </if>
+            <if test="matchedProducts != null">
+                MatchedProducts,
+            </if>
+            <if test="isDaiFa != null">
+                IsDaiFa,
+            </if>
+            <if test="nodeNo != null">
+                NodeNo,
+            </if>
+            <if test="totalManualDiscount != null">
+                TotalManualDiscount,
+            </if>
+            <if test="listPrice != null">
+                ListPrice,
+            </if>
+            <if test="payPrice != null">
+                PayPrice,
+            </if>
+            <if test="tuhuCost != null">
+                TuhuCost,
+            </if>
+            <if test="displayName != null">
+                DisplayName,
+            </if>
+            <if test="amount != null">
+                Amount,
+            </if>
+            <if test="unit != null">
+                Unit,
+            </if>
+            <if test="productName != null">
+                ProductName,
+            </if>
+            <if test="displayUnit != null">
+                DisplayUnit,
+            </if>
+            <if test="discountSplitCoda != null">
+                DiscountSplitCoda,
+            </if>
+            <if test="taxRate != null">
+                TaxRate,
+            </if>
+            <if test="noTaxCost != null">
+                NoTaxCost,
+            </if>
+            <if test="noTaxTuhuCost != null">
+                NoTaxTuhuCost,
+            </if>
+            <if test="IDCode != null">
+                IDCode,
+            </if>
+            <if test="FUPID != null">
+                FUPID,
+            </if>
+            <if test="extCol != null">
+                ExtCol,
+            </if>
+            <if test="rowVersions != null">
+                RowVersions,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderID != null">
+                #{orderID,jdbcType=INTEGER},
+            </if>
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="PID != null">
+                #{PID,jdbcType=VARCHAR},
+            </if>
+            <if test="poid != null">
+                #{poid,jdbcType=INTEGER},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="size != null">
+                #{size,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="carCode != null">
+                #{carCode,jdbcType=VARCHAR},
+            </if>
+            <if test="carName != null">
+                #{carName,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="markedPrice != null">
+                #{markedPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="discount != null">
+                #{discount,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="totalDiscount != null">
+                #{totalDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="purchasePrice != null">
+                #{purchasePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="cost != null">
+                #{cost,jdbcType=DECIMAL},
+            </if>
+            <if test="installFee != null">
+                #{installFee,jdbcType=DECIMAL},
+            </if>
+            <if test="vendor != null">
+                #{vendor,jdbcType=VARCHAR},
+            </if>
+            <if test="isPaid != null">
+                #{isPaid,jdbcType=BIT},
+            </if>
+            <if test="paidVia != null">
+                #{paidVia,jdbcType=VARCHAR},
+            </if>
+            <if test="instockDate != null">
+                #{instockDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paidDate != null">
+                #{paidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="purchaseStatus != null">
+                #{purchaseStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="isInstallFeePaid != null">
+                #{isInstallFeePaid,jdbcType=BIT},
+            </if>
+            <if test="installFeePaidDate != null">
+                #{installFeePaidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commission != null">
+                #{commission,jdbcType=DOUBLE},
+            </if>
+            <if test="HCNum != null">
+                #{HCNum,jdbcType=INTEGER},
+            </if>
+            <if test="origProdId != null">
+                #{origProdId,jdbcType=INTEGER},
+            </if>
+            <if test="productType != null">
+                #{productType,jdbcType=INTEGER},
+            </if>
+            <if test="parentID != null">
+                #{parentID,jdbcType=INTEGER},
+            </if>
+            <if test="weekYear != null">
+                #{weekYear,jdbcType=CHAR},
+            </if>
+            <if test="refID != null">
+                #{refID,jdbcType=VARCHAR},
+            </if>
+            <if test="promotionCode != null">
+                #{promotionCode,jdbcType=INTEGER},
+            </if>
+            <if test="promotionMoney != null">
+                #{promotionMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="matchedProducts != null">
+                #{matchedProducts,jdbcType=VARCHAR},
+            </if>
+            <if test="isDaiFa != null">
+                #{isDaiFa,jdbcType=BIT},
+            </if>
+            <if test="nodeNo != null">
+                #{nodeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="totalManualDiscount != null">
+                #{totalManualDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="listPrice != null">
+                #{listPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payPrice != null">
+                #{payPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="tuhuCost != null">
+                #{tuhuCost,jdbcType=DECIMAL},
+            </if>
+            <if test="displayName != null">
+                #{displayName,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="unit != null">
+                #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="displayUnit != null">
+                #{displayUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="discountSplitCoda != null">
+                #{discountSplitCoda,jdbcType=DECIMAL},
+            </if>
+            <if test="taxRate != null">
+                #{taxRate,jdbcType=DECIMAL},
+            </if>
+            <if test="noTaxCost != null">
+                #{noTaxCost,jdbcType=DECIMAL},
+            </if>
+            <if test="noTaxTuhuCost != null">
+                #{noTaxTuhuCost,jdbcType=DECIMAL},
+            </if>
+            <if test="IDCode != null">
+                #{IDCode,jdbcType=CHAR},
+            </if>
+            <if test="FUPID != null">
+                #{FUPID,jdbcType=CLOB},
+            </if>
+            <if test="extCol != null">
+                #{extCol,jdbcType=CLOB},
+            </if>
+            <if test="rowVersions != null">
+                #{rowVersions,jdbcType=BINARY},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ryt.demo.dal.mssql.entity.OrderListWithBLOBs">
+        update tbl_OrderList
+        <set>
+            <if test="orderID != null">
+                OrderID = #{orderID,jdbcType=INTEGER},
+            </if>
+            <if test="orderNo != null">
+                OrderNo = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="PID != null">
+                PID = #{PID,jdbcType=VARCHAR},
+            </if>
+            <if test="poid != null">
+                Poid = #{poid,jdbcType=INTEGER},
+            </if>
+            <if test="category != null">
+                Category = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                Name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="size != null">
+                Size = #{size,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                Remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="carCode != null">
+                CarCode = #{carCode,jdbcType=VARCHAR},
+            </if>
+            <if test="carName != null">
+                CarName = #{carName,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                Num = #{num,jdbcType=INTEGER},
+            </if>
+            <if test="markedPrice != null">
+                MarkedPrice = #{markedPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="discount != null">
+                Discount = #{discount,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null">
+                Price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="totalDiscount != null">
+                TotalDiscount = #{totalDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="totalPrice != null">
+                TotalPrice = #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="lastUpdateTime != null">
+                LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="purchasePrice != null">
+                PurchasePrice = #{purchasePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="cost != null">
+                Cost = #{cost,jdbcType=DECIMAL},
+            </if>
+            <if test="installFee != null">
+                InstallFee = #{installFee,jdbcType=DECIMAL},
+            </if>
+            <if test="vendor != null">
+                Vendor = #{vendor,jdbcType=VARCHAR},
+            </if>
+            <if test="isPaid != null">
+                IsPaid = #{isPaid,jdbcType=BIT},
+            </if>
+            <if test="paidVia != null">
+                PaidVia = #{paidVia,jdbcType=VARCHAR},
+            </if>
+            <if test="instockDate != null">
+                InstockDate = #{instockDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paidDate != null">
+                PaidDate = #{paidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="purchaseStatus != null">
+                PurchaseStatus = #{purchaseStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="isInstallFeePaid != null">
+                IsInstallFeePaid = #{isInstallFeePaid,jdbcType=BIT},
+            </if>
+            <if test="installFeePaidDate != null">
+                InstallFeePaidDate = #{installFeePaidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                Deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="createDate != null">
+                CreateDate = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commission != null">
+                Commission = #{commission,jdbcType=DOUBLE},
+            </if>
+            <if test="HCNum != null">
+                HCNum = #{HCNum,jdbcType=INTEGER},
+            </if>
+            <if test="origProdId != null">
+                OrigProdId = #{origProdId,jdbcType=INTEGER},
+            </if>
+            <if test="productType != null">
+                ProductType = #{productType,jdbcType=INTEGER},
+            </if>
+            <if test="parentID != null">
+                ParentID = #{parentID,jdbcType=INTEGER},
+            </if>
+            <if test="weekYear != null">
+                WeekYear = #{weekYear,jdbcType=CHAR},
+            </if>
+            <if test="refID != null">
+                RefID = #{refID,jdbcType=VARCHAR},
+            </if>
+            <if test="promotionCode != null">
+                PromotionCode = #{promotionCode,jdbcType=INTEGER},
+            </if>
+            <if test="promotionMoney != null">
+                PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="matchedProducts != null">
+                MatchedProducts = #{matchedProducts,jdbcType=VARCHAR},
+            </if>
+            <if test="isDaiFa != null">
+                IsDaiFa = #{isDaiFa,jdbcType=BIT},
+            </if>
+            <if test="nodeNo != null">
+                NodeNo = #{nodeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="totalManualDiscount != null">
+                TotalManualDiscount = #{totalManualDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="listPrice != null">
+                ListPrice = #{listPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payPrice != null">
+                PayPrice = #{payPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="tuhuCost != null">
+                TuhuCost = #{tuhuCost,jdbcType=DECIMAL},
+            </if>
+            <if test="displayName != null">
+                DisplayName = #{displayName,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                Amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="unit != null">
+                Unit = #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                ProductName = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="displayUnit != null">
+                DisplayUnit = #{displayUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="discountSplitCoda != null">
+                DiscountSplitCoda = #{discountSplitCoda,jdbcType=DECIMAL},
+            </if>
+            <if test="taxRate != null">
+                TaxRate = #{taxRate,jdbcType=DECIMAL},
+            </if>
+            <if test="noTaxCost != null">
+                NoTaxCost = #{noTaxCost,jdbcType=DECIMAL},
+            </if>
+            <if test="noTaxTuhuCost != null">
+                NoTaxTuhuCost = #{noTaxTuhuCost,jdbcType=DECIMAL},
+            </if>
+            <if test="IDCode != null">
+                IDCode = #{IDCode,jdbcType=CHAR},
+            </if>
+            <if test="FUPID != null">
+                FUPID = #{FUPID,jdbcType=CLOB},
+            </if>
+            <if test="extCol != null">
+                ExtCol = #{extCol,jdbcType=CLOB},
+            </if>
+            <if test="rowVersions != null">
+                RowVersions = #{rowVersions,jdbcType=BINARY},
+            </if>
+        </set>
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ryt.demo.dal.mssql.entity.OrderListWithBLOBs">
+        update tbl_OrderList
+        set OrderID = #{orderID,jdbcType=INTEGER},
+        OrderNo = #{orderNo,jdbcType=VARCHAR},
+        PID = #{PID,jdbcType=VARCHAR},
+        Poid = #{poid,jdbcType=INTEGER},
+        Category = #{category,jdbcType=VARCHAR},
+        Name = #{name,jdbcType=VARCHAR},
+        Size = #{size,jdbcType=VARCHAR},
+        Remark = #{remark,jdbcType=VARCHAR},
+        CarCode = #{carCode,jdbcType=VARCHAR},
+        CarName = #{carName,jdbcType=VARCHAR},
+        Num = #{num,jdbcType=INTEGER},
+        MarkedPrice = #{markedPrice,jdbcType=DECIMAL},
+        Discount = #{discount,jdbcType=DECIMAL},
+        Price = #{price,jdbcType=DECIMAL},
+        TotalDiscount = #{totalDiscount,jdbcType=DECIMAL},
+        TotalPrice = #{totalPrice,jdbcType=DECIMAL},
+        LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+        PurchasePrice = #{purchasePrice,jdbcType=DECIMAL},
+        Cost = #{cost,jdbcType=DECIMAL},
+        InstallFee = #{installFee,jdbcType=DECIMAL},
+        Vendor = #{vendor,jdbcType=VARCHAR},
+        IsPaid = #{isPaid,jdbcType=BIT},
+        PaidVia = #{paidVia,jdbcType=VARCHAR},
+        InstockDate = #{instockDate,jdbcType=TIMESTAMP},
+        PaidDate = #{paidDate,jdbcType=TIMESTAMP},
+        PurchaseStatus = #{purchaseStatus,jdbcType=VARCHAR},
+        IsInstallFeePaid = #{isInstallFeePaid,jdbcType=BIT},
+        InstallFeePaidDate = #{installFeePaidDate,jdbcType=TIMESTAMP},
+        Deleted = #{deleted,jdbcType=BIT},
+        CreateDate = #{createDate,jdbcType=TIMESTAMP},
+        Commission = #{commission,jdbcType=DOUBLE},
+        HCNum = #{HCNum,jdbcType=INTEGER},
+        OrigProdId = #{origProdId,jdbcType=INTEGER},
+        ProductType = #{productType,jdbcType=INTEGER},
+        ParentID = #{parentID,jdbcType=INTEGER},
+        WeekYear = #{weekYear,jdbcType=CHAR},
+        RefID = #{refID,jdbcType=VARCHAR},
+        PromotionCode = #{promotionCode,jdbcType=INTEGER},
+        PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+        MatchedProducts = #{matchedProducts,jdbcType=VARCHAR},
+        IsDaiFa = #{isDaiFa,jdbcType=BIT},
+        NodeNo = #{nodeNo,jdbcType=VARCHAR},
+        TotalManualDiscount = #{totalManualDiscount,jdbcType=DECIMAL},
+        ListPrice = #{listPrice,jdbcType=DECIMAL},
+        PayPrice = #{payPrice,jdbcType=DECIMAL},
+        TuhuCost = #{tuhuCost,jdbcType=DECIMAL},
+        DisplayName = #{displayName,jdbcType=VARCHAR},
+        Amount = #{amount,jdbcType=DECIMAL},
+        Unit = #{unit,jdbcType=VARCHAR},
+        ProductName = #{productName,jdbcType=VARCHAR},
+        DisplayUnit = #{displayUnit,jdbcType=VARCHAR},
+        DiscountSplitCoda = #{discountSplitCoda,jdbcType=DECIMAL},
+        TaxRate = #{taxRate,jdbcType=DECIMAL},
+        NoTaxCost = #{noTaxCost,jdbcType=DECIMAL},
+        NoTaxTuhuCost = #{noTaxTuhuCost,jdbcType=DECIMAL},
+        IDCode = #{IDCode,jdbcType=CHAR},
+        FUPID = #{FUPID,jdbcType=CLOB},
+        ExtCol = #{extCol,jdbcType=CLOB},
+        RowVersions = #{rowVersions,jdbcType=BINARY}
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ryt.demo.dal.mssql.entity.OrderList">
+        update tbl_OrderList
+        set OrderID = #{orderID,jdbcType=INTEGER},
+        OrderNo = #{orderNo,jdbcType=VARCHAR},
+        PID = #{PID,jdbcType=VARCHAR},
+        Poid = #{poid,jdbcType=INTEGER},
+        Category = #{category,jdbcType=VARCHAR},
+        Name = #{name,jdbcType=VARCHAR},
+        Size = #{size,jdbcType=VARCHAR},
+        Remark = #{remark,jdbcType=VARCHAR},
+        CarCode = #{carCode,jdbcType=VARCHAR},
+        CarName = #{carName,jdbcType=VARCHAR},
+        Num = #{num,jdbcType=INTEGER},
+        MarkedPrice = #{markedPrice,jdbcType=DECIMAL},
+        Discount = #{discount,jdbcType=DECIMAL},
+        Price = #{price,jdbcType=DECIMAL},
+        TotalDiscount = #{totalDiscount,jdbcType=DECIMAL},
+        TotalPrice = #{totalPrice,jdbcType=DECIMAL},
+        LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+        PurchasePrice = #{purchasePrice,jdbcType=DECIMAL},
+        Cost = #{cost,jdbcType=DECIMAL},
+        InstallFee = #{installFee,jdbcType=DECIMAL},
+        Vendor = #{vendor,jdbcType=VARCHAR},
+        IsPaid = #{isPaid,jdbcType=BIT},
+        PaidVia = #{paidVia,jdbcType=VARCHAR},
+        InstockDate = #{instockDate,jdbcType=TIMESTAMP},
+        PaidDate = #{paidDate,jdbcType=TIMESTAMP},
+        PurchaseStatus = #{purchaseStatus,jdbcType=VARCHAR},
+        IsInstallFeePaid = #{isInstallFeePaid,jdbcType=BIT},
+        InstallFeePaidDate = #{installFeePaidDate,jdbcType=TIMESTAMP},
+        Deleted = #{deleted,jdbcType=BIT},
+        CreateDate = #{createDate,jdbcType=TIMESTAMP},
+        Commission = #{commission,jdbcType=DOUBLE},
+        HCNum = #{HCNum,jdbcType=INTEGER},
+        OrigProdId = #{origProdId,jdbcType=INTEGER},
+        ProductType = #{productType,jdbcType=INTEGER},
+        ParentID = #{parentID,jdbcType=INTEGER},
+        WeekYear = #{weekYear,jdbcType=CHAR},
+        RefID = #{refID,jdbcType=VARCHAR},
+        PromotionCode = #{promotionCode,jdbcType=INTEGER},
+        PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+        MatchedProducts = #{matchedProducts,jdbcType=VARCHAR},
+        IsDaiFa = #{isDaiFa,jdbcType=BIT},
+        NodeNo = #{nodeNo,jdbcType=VARCHAR},
+        TotalManualDiscount = #{totalManualDiscount,jdbcType=DECIMAL},
+        ListPrice = #{listPrice,jdbcType=DECIMAL},
+        PayPrice = #{payPrice,jdbcType=DECIMAL},
+        TuhuCost = #{tuhuCost,jdbcType=DECIMAL},
+        DisplayName = #{displayName,jdbcType=VARCHAR},
+        Amount = #{amount,jdbcType=DECIMAL},
+        Unit = #{unit,jdbcType=VARCHAR},
+        ProductName = #{productName,jdbcType=VARCHAR},
+        DisplayUnit = #{displayUnit,jdbcType=VARCHAR},
+        DiscountSplitCoda = #{discountSplitCoda,jdbcType=DECIMAL},
+        TaxRate = #{taxRate,jdbcType=DECIMAL},
+        NoTaxCost = #{noTaxCost,jdbcType=DECIMAL},
+        NoTaxTuhuCost = #{noTaxTuhuCost,jdbcType=DECIMAL},
+        IDCode = #{IDCode,jdbcType=CHAR}
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+</mapper>

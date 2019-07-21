@@ -1,0 +1,1508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ryt.demo.dal.mssql.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.ryt.demo.dal.mssql.entity.Order">
+        <id column="PKID" jdbcType="INTEGER" property="PKID"/>
+        <result column="OrderNo" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="UserID" jdbcType="CHAR" property="userID"/>
+        <result column="UserName" jdbcType="VARCHAR" property="userName"/>
+        <result column="UserTel" jdbcType="VARCHAR" property="userTel"/>
+        <result column="AddressID" jdbcType="INTEGER" property="addressID"/>
+        <result column="CarID" jdbcType="CHAR" property="carID"/>
+        <result column="Status" jdbcType="VARCHAR" property="status"/>
+        <result column="OrderDatetime" jdbcType="TIMESTAMP" property="orderDatetime"/>
+        <result column="BookDatetime" jdbcType="TIMESTAMP" property="bookDatetime"/>
+        <result column="BookPeriod" jdbcType="VARCHAR" property="bookPeriod"/>
+        <result column="Abst" jdbcType="VARCHAR" property="abst"/>
+        <result column="Remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="Owner" jdbcType="VARCHAR" property="owner"/>
+        <result column="Submitor" jdbcType="VARCHAR" property="submitor"/>
+        <result column="Auditor" jdbcType="VARCHAR" property="auditor"/>
+        <result column="AuditDatetime" jdbcType="TIMESTAMP" property="auditDatetime"/>
+        <result column="SumNum" jdbcType="INTEGER" property="sumNum"/>
+        <result column="SumMoney" jdbcType="DECIMAL" property="sumMoney"/>
+        <result column="SumMarkedMoney" jdbcType="DECIMAL" property="sumMarkedMoney"/>
+        <result column="SumDisMoney" jdbcType="DECIMAL" property="sumDisMoney"/>
+        <result column="ShippingMoney" jdbcType="DECIMAL" property="shippingMoney"/>
+        <result column="InstallMoney" jdbcType="DECIMAL" property="installMoney"/>
+        <result column="DiscountItem" jdbcType="VARCHAR" property="discountItem"/>
+        <result column="InstallType" jdbcType="VARCHAR" property="installType"/>
+        <result column="InstallShopID" jdbcType="INTEGER" property="installShopID"/>
+        <result column="InstallShop" jdbcType="VARCHAR" property="installShop"/>
+        <result column="DeliveryCode" jdbcType="VARCHAR" property="deliveryCode"/>
+        <result column="PayStatus" jdbcType="VARCHAR" property="payStatus"/>
+        <result column="SumPaid" jdbcType="DECIMAL" property="sumPaid"/>
+        <result column="PayMothed" jdbcType="VARCHAR" property="payMothed"/>
+        <result column="PaymentType" jdbcType="VARCHAR" property="paymentType"/>
+        <result column="PurchaseDatetime" jdbcType="TIMESTAMP" property="purchaseDatetime"/>
+        <result column="DeliveryType" jdbcType="VARCHAR" property="deliveryType"/>
+        <result column="DeliveryStatus" jdbcType="VARCHAR" property="deliveryStatus"/>
+        <result column="DeliveryDatetime" jdbcType="TIMESTAMP" property="deliveryDatetime"/>
+        <result column="DeliveryConfirmor" jdbcType="VARCHAR" property="deliveryConfirmor"/>
+        <result column="InstallDatetime" jdbcType="TIMESTAMP" property="installDatetime"/>
+        <result column="InstallStatus" jdbcType="VARCHAR" property="installStatus"/>
+        <result column="PayToCPDate" jdbcType="TIMESTAMP" property="payToCPDate"/>
+        <result column="PayInfo" jdbcType="VARCHAR" property="payInfo"/>
+        <result column="InvoiceTitle" jdbcType="VARCHAR" property="invoiceTitle"/>
+        <result column="InvoiceType" jdbcType="VARCHAR" property="invoiceType"/>
+        <result column="InvoiceStatus" jdbcType="VARCHAR" property="invoiceStatus"/>
+        <result column="InvoiceDeliveryCode" jdbcType="VARCHAR" property="invoiceDeliveryCode"/>
+        <result column="InvoiceAddTax" jdbcType="DECIMAL" property="invoiceAddTax"/>
+        <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
+        <result column="CarPlate" jdbcType="VARCHAR" property="carPlate"/>
+        <result column="Cost" jdbcType="DECIMAL" property="cost"/>
+        <result column="InstallFee" jdbcType="DECIMAL" property="installFee"/>
+        <result column="DeliveryFee" jdbcType="DECIMAL" property="deliveryFee"/>
+        <result column="OtherPayShop" jdbcType="DECIMAL" property="otherPayShop"/>
+        <result column="IsOtherPaid" jdbcType="BIT" property="isOtherPaid"/>
+        <result column="OtherPaidDate" jdbcType="TIMESTAMP" property="otherPaidDate"/>
+        <result column="InvAmont" jdbcType="DECIMAL" property="invAmont"/>
+        <result column="InvAddress" jdbcType="VARCHAR" property="invAddress"/>
+        <result column="InvTaxNum" jdbcType="VARCHAR" property="invTaxNum"/>
+        <result column="InvBank" jdbcType="VARCHAR" property="invBank"/>
+        <result column="InvBankAccount" jdbcType="VARCHAR" property="invBankAccount"/>
+        <result column="InvRemark" jdbcType="VARCHAR" property="invRemark"/>
+        <result column="OrderType" jdbcType="VARCHAR" property="orderType"/>
+        <result column="OrderChannel" jdbcType="VARCHAR" property="orderChannel"/>
+        <result column="RefNo" jdbcType="VARCHAR" property="refNo"/>
+        <result column="CaseId" jdbcType="CHAR" property="caseId"/>
+        <result column="CommentStatus" jdbcType="INTEGER" property="commentStatus"/>
+        <result column="Reconciliation" jdbcType="BIT" property="reconciliation"/>
+        <result column="ReconcileTime" jdbcType="TIMESTAMP" property="reconcileTime"/>
+        <result column="ReconciledTime" jdbcType="TIMESTAMP" property="reconciledTime"/>
+        <result column="ShopReconcileVoucher" jdbcType="INTEGER" property="shopReconcileVoucher"/>
+        <result column="BankRecieveVoucher" jdbcType="INTEGER" property="bankRecieveVoucher"/>
+        <result column="OrderAddress" jdbcType="VARCHAR" property="orderAddress"/>
+        <result column="OutStockDatetime" jdbcType="TIMESTAMP" property="outStockDatetime"/>
+        <result column="IncomeVoucher" jdbcType="INTEGER" property="incomeVoucher"/>
+        <result column="CostVoucher" jdbcType="INTEGER" property="costVoucher"/>
+        <result column="OrderProcessed" jdbcType="BIT" property="orderProcessed"/>
+        <result column="OrderProcessor" jdbcType="VARCHAR" property="orderProcessor"/>
+        <result column="OrderProcessTime" jdbcType="TIMESTAMP" property="orderProcessTime"/>
+        <result column="OrderProducts" jdbcType="VARCHAR" property="orderProducts"/>
+        <result column="DeliveryCompany" jdbcType="VARCHAR" property="deliveryCompany"/>
+        <result column="RecheiveDate" jdbcType="TIMESTAMP" property="recheiveDate"/>
+        <result column="DeliveryAddressID" jdbcType="CHAR" property="deliveryAddressID"/>
+        <result column="TranRefNum" jdbcType="VARCHAR" property="tranRefNum"/>
+        <result column="CheckMark" jdbcType="BIT" property="checkMark"/>
+        <result column="CheckComment" jdbcType="VARCHAR" property="checkComment"/>
+        <result column="TuHuHandler" jdbcType="VARCHAR" property="tuHuHandler"/>
+        <result column="HandleComment" jdbcType="VARCHAR" property="handleComment"/>
+        <result column="IsHandle" jdbcType="BIT" property="isHandle"/>
+        <result column="PurchaseStatus" jdbcType="INTEGER" property="purchaseStatus"/>
+        <result column="RegionID" jdbcType="INTEGER" property="regionID"/>
+        <result column="WareHouseID" jdbcType="INTEGER" property="wareHouseID"/>
+        <result column="WareHouseName" jdbcType="VARCHAR" property="wareHouseName"/>
+        <result column="RefOrderState" jdbcType="INTEGER" property="refOrderState"/>
+        <result column="BuyAgainType" jdbcType="VARCHAR" property="buyAgainType"/>
+        <result column="DriverName" jdbcType="VARCHAR" property="driverName"/>
+        <result column="SubmitDate" jdbcType="TIMESTAMP" property="submitDate"/>
+        <result column="IsReminder" jdbcType="BIT" property="isReminder"/>
+        <result column="IsGift" jdbcType="BIT" property="isGift"/>
+        <result column="GetGiftDateTime" jdbcType="TIMESTAMP" property="getGiftDateTime"/>
+        <result column="InstallOrderNo" jdbcType="VARCHAR" property="installOrderNo"/>
+        <result column="GotPayDate" jdbcType="TIMESTAMP" property="gotPayDate"/>
+        <result column="PromotionMoney" jdbcType="DECIMAL" property="promotionMoney"/>
+        <result column="BookSentDateTime" jdbcType="TIMESTAMP" property="bookSentDateTime"/>
+        <result column="SumPayDeduction" jdbcType="DECIMAL" property="sumPayDeduction"/>
+        <result column="SumPayable" jdbcType="DECIMAL" property="sumPayable"/>
+        <result column="SumListPrice" jdbcType="DECIMAL" property="sumListPrice"/>
+        <result column="SumManualDiscount" jdbcType="DECIMAL" property="sumManualDiscount"/>
+        <result column="OrderStockID" jdbcType="INTEGER" property="orderStockID"/>
+        <result column="OrderStockName" jdbcType="VARCHAR" property="orderStockName"/>
+        <result column="RecieveDatetime" jdbcType="TIMESTAMP" property="recieveDatetime"/>
+        <result column="PayCategory" jdbcType="VARCHAR" property="payCategory"/>
+        <result column="OrderProductType" jdbcType="VARCHAR" property="orderProductType"/>
+        <result column="TradeID" jdbcType="BIGINT" property="tradeID"/>
+        <result column="SourceID" jdbcType="INTEGER" property="sourceID"/>
+        <result column="SourceType" jdbcType="INTEGER" property="sourceType"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ryt.demo.dal.mssql.entity.OrderWithBLOBs">
+        <result column="SystemRemark" jdbcType="CLOB" property="systemRemark"/>
+        <result column="RowVersions" jdbcType="BINARY" property="rowVersions"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        PKID, OrderNo, UserID, UserName, UserTel, AddressID, CarID, Status, OrderDatetime,
+        BookDatetime, BookPeriod, Abst, Remark, Owner, Submitor, Auditor, AuditDatetime,
+        SumNum, SumMoney, SumMarkedMoney, SumDisMoney, ShippingMoney, InstallMoney, DiscountItem,
+        InstallType, InstallShopID, InstallShop, DeliveryCode, PayStatus, SumPaid, PayMothed,
+        PaymentType, PurchaseDatetime, DeliveryType, DeliveryStatus, DeliveryDatetime, DeliveryConfirmor,
+        InstallDatetime, InstallStatus, PayToCPDate, PayInfo, InvoiceTitle, InvoiceType,
+        InvoiceStatus, InvoiceDeliveryCode, InvoiceAddTax, LastUpdateTime, CarPlate, Cost,
+        InstallFee, DeliveryFee, OtherPayShop, IsOtherPaid, OtherPaidDate, InvAmont, InvAddress,
+        InvTaxNum, InvBank, InvBankAccount, InvRemark, OrderType, OrderChannel, RefNo, CaseId,
+        CommentStatus, Reconciliation, ReconcileTime, ReconciledTime, ShopReconcileVoucher,
+        BankRecieveVoucher, OrderAddress, OutStockDatetime, IncomeVoucher, CostVoucher, OrderProcessed,
+        OrderProcessor, OrderProcessTime, OrderProducts, DeliveryCompany, RecheiveDate, DeliveryAddressID,
+        TranRefNum, CheckMark, CheckComment, TuHuHandler, HandleComment, IsHandle, PurchaseStatus,
+        RegionID, WareHouseID, WareHouseName, RefOrderState, BuyAgainType, DriverName, SubmitDate,
+        IsReminder, IsGift, GetGiftDateTime, InstallOrderNo, GotPayDate, PromotionMoney,
+        BookSentDateTime, SumPayDeduction, SumPayable, SumListPrice, SumManualDiscount, OrderStockID,
+        OrderStockName, RecieveDatetime, PayCategory, OrderProductType, TradeID, SourceID,
+        SourceType
+    </sql>
+    <sql id="Blob_Column_List">
+        SystemRemark, RowVersions
+    </sql>
+    <select id="selectByExampleWithBLOBs" parameterType="com.ryt.demo.dal.mssql.entity.OrderExample"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tbl_Order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" parameterType="com.ryt.demo.dal.mssql.entity.OrderExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from tbl_Order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="offSet !=null and length != null">
+            limit ${offSet}, ${length}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tbl_Order
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </select>
+    <insert id="insertSelective" parameterType="com.ryt.demo.dal.mssql.entity.OrderWithBLOBs">
+        <selectKey keyProperty="PKID" order="AFTER" resultType="java.lang.Integer">
+            SELECT SCOPE_IDENTITY()
+        </selectKey>
+        insert into tbl_Order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">
+                OrderNo,
+            </if>
+            <if test="userID != null">
+                UserID,
+            </if>
+            <if test="userName != null">
+                UserName,
+            </if>
+            <if test="userTel != null">
+                UserTel,
+            </if>
+            <if test="addressID != null">
+                AddressID,
+            </if>
+            <if test="carID != null">
+                CarID,
+            </if>
+            <if test="status != null">
+                Status,
+            </if>
+            <if test="orderDatetime != null">
+                OrderDatetime,
+            </if>
+            <if test="bookDatetime != null">
+                BookDatetime,
+            </if>
+            <if test="bookPeriod != null">
+                BookPeriod,
+            </if>
+            <if test="abst != null">
+                Abst,
+            </if>
+            <if test="remark != null">
+                Remark,
+            </if>
+            <if test="owner != null">
+                Owner,
+            </if>
+            <if test="submitor != null">
+                Submitor,
+            </if>
+            <if test="auditor != null">
+                Auditor,
+            </if>
+            <if test="auditDatetime != null">
+                AuditDatetime,
+            </if>
+            <if test="sumNum != null">
+                SumNum,
+            </if>
+            <if test="sumMoney != null">
+                SumMoney,
+            </if>
+            <if test="sumMarkedMoney != null">
+                SumMarkedMoney,
+            </if>
+            <if test="sumDisMoney != null">
+                SumDisMoney,
+            </if>
+            <if test="shippingMoney != null">
+                ShippingMoney,
+            </if>
+            <if test="installMoney != null">
+                InstallMoney,
+            </if>
+            <if test="discountItem != null">
+                DiscountItem,
+            </if>
+            <if test="installType != null">
+                InstallType,
+            </if>
+            <if test="installShopID != null">
+                InstallShopID,
+            </if>
+            <if test="installShop != null">
+                InstallShop,
+            </if>
+            <if test="deliveryCode != null">
+                DeliveryCode,
+            </if>
+            <if test="payStatus != null">
+                PayStatus,
+            </if>
+            <if test="sumPaid != null">
+                SumPaid,
+            </if>
+            <if test="payMothed != null">
+                PayMothed,
+            </if>
+            <if test="paymentType != null">
+                PaymentType,
+            </if>
+            <if test="purchaseDatetime != null">
+                PurchaseDatetime,
+            </if>
+            <if test="deliveryType != null">
+                DeliveryType,
+            </if>
+            <if test="deliveryStatus != null">
+                DeliveryStatus,
+            </if>
+            <if test="deliveryDatetime != null">
+                DeliveryDatetime,
+            </if>
+            <if test="deliveryConfirmor != null">
+                DeliveryConfirmor,
+            </if>
+            <if test="installDatetime != null">
+                InstallDatetime,
+            </if>
+            <if test="installStatus != null">
+                InstallStatus,
+            </if>
+            <if test="payToCPDate != null">
+                PayToCPDate,
+            </if>
+            <if test="payInfo != null">
+                PayInfo,
+            </if>
+            <if test="invoiceTitle != null">
+                InvoiceTitle,
+            </if>
+            <if test="invoiceType != null">
+                InvoiceType,
+            </if>
+            <if test="invoiceStatus != null">
+                InvoiceStatus,
+            </if>
+            <if test="invoiceDeliveryCode != null">
+                InvoiceDeliveryCode,
+            </if>
+            <if test="invoiceAddTax != null">
+                InvoiceAddTax,
+            </if>
+            <if test="lastUpdateTime != null">
+                LastUpdateTime,
+            </if>
+            <if test="carPlate != null">
+                CarPlate,
+            </if>
+            <if test="cost != null">
+                Cost,
+            </if>
+            <if test="installFee != null">
+                InstallFee,
+            </if>
+            <if test="deliveryFee != null">
+                DeliveryFee,
+            </if>
+            <if test="otherPayShop != null">
+                OtherPayShop,
+            </if>
+            <if test="isOtherPaid != null">
+                IsOtherPaid,
+            </if>
+            <if test="otherPaidDate != null">
+                OtherPaidDate,
+            </if>
+            <if test="invAmont != null">
+                InvAmont,
+            </if>
+            <if test="invAddress != null">
+                InvAddress,
+            </if>
+            <if test="invTaxNum != null">
+                InvTaxNum,
+            </if>
+            <if test="invBank != null">
+                InvBank,
+            </if>
+            <if test="invBankAccount != null">
+                InvBankAccount,
+            </if>
+            <if test="invRemark != null">
+                InvRemark,
+            </if>
+            <if test="orderType != null">
+                OrderType,
+            </if>
+            <if test="orderChannel != null">
+                OrderChannel,
+            </if>
+            <if test="refNo != null">
+                RefNo,
+            </if>
+            <if test="caseId != null">
+                CaseId,
+            </if>
+            <if test="commentStatus != null">
+                CommentStatus,
+            </if>
+            <if test="reconciliation != null">
+                Reconciliation,
+            </if>
+            <if test="reconcileTime != null">
+                ReconcileTime,
+            </if>
+            <if test="reconciledTime != null">
+                ReconciledTime,
+            </if>
+            <if test="shopReconcileVoucher != null">
+                ShopReconcileVoucher,
+            </if>
+            <if test="bankRecieveVoucher != null">
+                BankRecieveVoucher,
+            </if>
+            <if test="orderAddress != null">
+                OrderAddress,
+            </if>
+            <if test="outStockDatetime != null">
+                OutStockDatetime,
+            </if>
+            <if test="incomeVoucher != null">
+                IncomeVoucher,
+            </if>
+            <if test="costVoucher != null">
+                CostVoucher,
+            </if>
+            <if test="orderProcessed != null">
+                OrderProcessed,
+            </if>
+            <if test="orderProcessor != null">
+                OrderProcessor,
+            </if>
+            <if test="orderProcessTime != null">
+                OrderProcessTime,
+            </if>
+            <if test="orderProducts != null">
+                OrderProducts,
+            </if>
+            <if test="deliveryCompany != null">
+                DeliveryCompany,
+            </if>
+            <if test="recheiveDate != null">
+                RecheiveDate,
+            </if>
+            <if test="deliveryAddressID != null">
+                DeliveryAddressID,
+            </if>
+            <if test="tranRefNum != null">
+                TranRefNum,
+            </if>
+            <if test="checkMark != null">
+                CheckMark,
+            </if>
+            <if test="checkComment != null">
+                CheckComment,
+            </if>
+            <if test="tuHuHandler != null">
+                TuHuHandler,
+            </if>
+            <if test="handleComment != null">
+                HandleComment,
+            </if>
+            <if test="isHandle != null">
+                IsHandle,
+            </if>
+            <if test="purchaseStatus != null">
+                PurchaseStatus,
+            </if>
+            <if test="regionID != null">
+                RegionID,
+            </if>
+            <if test="wareHouseID != null">
+                WareHouseID,
+            </if>
+            <if test="wareHouseName != null">
+                WareHouseName,
+            </if>
+            <if test="refOrderState != null">
+                RefOrderState,
+            </if>
+            <if test="buyAgainType != null">
+                BuyAgainType,
+            </if>
+            <if test="driverName != null">
+                DriverName,
+            </if>
+            <if test="submitDate != null">
+                SubmitDate,
+            </if>
+            <if test="isReminder != null">
+                IsReminder,
+            </if>
+            <if test="isGift != null">
+                IsGift,
+            </if>
+            <if test="getGiftDateTime != null">
+                GetGiftDateTime,
+            </if>
+            <if test="installOrderNo != null">
+                InstallOrderNo,
+            </if>
+            <if test="gotPayDate != null">
+                GotPayDate,
+            </if>
+            <if test="promotionMoney != null">
+                PromotionMoney,
+            </if>
+            <if test="bookSentDateTime != null">
+                BookSentDateTime,
+            </if>
+            <if test="sumPayDeduction != null">
+                SumPayDeduction,
+            </if>
+            <if test="sumPayable != null">
+                SumPayable,
+            </if>
+            <if test="sumListPrice != null">
+                SumListPrice,
+            </if>
+            <if test="sumManualDiscount != null">
+                SumManualDiscount,
+            </if>
+            <if test="orderStockID != null">
+                OrderStockID,
+            </if>
+            <if test="orderStockName != null">
+                OrderStockName,
+            </if>
+            <if test="recieveDatetime != null">
+                RecieveDatetime,
+            </if>
+            <if test="payCategory != null">
+                PayCategory,
+            </if>
+            <if test="orderProductType != null">
+                OrderProductType,
+            </if>
+            <if test="tradeID != null">
+                TradeID,
+            </if>
+            <if test="sourceID != null">
+                SourceID,
+            </if>
+            <if test="sourceType != null">
+                SourceType,
+            </if>
+            <if test="systemRemark != null">
+                SystemRemark,
+            </if>
+            <if test="rowVersions != null">
+                RowVersions,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="userID != null">
+                #{userID,jdbcType=CHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userTel != null">
+                #{userTel,jdbcType=VARCHAR},
+            </if>
+            <if test="addressID != null">
+                #{addressID,jdbcType=INTEGER},
+            </if>
+            <if test="carID != null">
+                #{carID,jdbcType=CHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="orderDatetime != null">
+                #{orderDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bookDatetime != null">
+                #{bookDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bookPeriod != null">
+                #{bookPeriod,jdbcType=VARCHAR},
+            </if>
+            <if test="abst != null">
+                #{abst,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="owner != null">
+                #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="submitor != null">
+                #{submitor,jdbcType=VARCHAR},
+            </if>
+            <if test="auditor != null">
+                #{auditor,jdbcType=VARCHAR},
+            </if>
+            <if test="auditDatetime != null">
+                #{auditDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sumNum != null">
+                #{sumNum,jdbcType=INTEGER},
+            </if>
+            <if test="sumMoney != null">
+                #{sumMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="sumMarkedMoney != null">
+                #{sumMarkedMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="sumDisMoney != null">
+                #{sumDisMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="shippingMoney != null">
+                #{shippingMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="installMoney != null">
+                #{installMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="discountItem != null">
+                #{discountItem,jdbcType=VARCHAR},
+            </if>
+            <if test="installType != null">
+                #{installType,jdbcType=VARCHAR},
+            </if>
+            <if test="installShopID != null">
+                #{installShopID,jdbcType=INTEGER},
+            </if>
+            <if test="installShop != null">
+                #{installShop,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryCode != null">
+                #{deliveryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="sumPaid != null">
+                #{sumPaid,jdbcType=DECIMAL},
+            </if>
+            <if test="payMothed != null">
+                #{payMothed,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentType != null">
+                #{paymentType,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseDatetime != null">
+                #{purchaseDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryType != null">
+                #{deliveryType,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryStatus != null">
+                #{deliveryStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryDatetime != null">
+                #{deliveryDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryConfirmor != null">
+                #{deliveryConfirmor,jdbcType=VARCHAR},
+            </if>
+            <if test="installDatetime != null">
+                #{installDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="installStatus != null">
+                #{installStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payToCPDate != null">
+                #{payToCPDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payInfo != null">
+                #{payInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceTitle != null">
+                #{invoiceTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceType != null">
+                #{invoiceType,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceStatus != null">
+                #{invoiceStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceDeliveryCode != null">
+                #{invoiceDeliveryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceAddTax != null">
+                #{invoiceAddTax,jdbcType=DECIMAL},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="carPlate != null">
+                #{carPlate,jdbcType=VARCHAR},
+            </if>
+            <if test="cost != null">
+                #{cost,jdbcType=DECIMAL},
+            </if>
+            <if test="installFee != null">
+                #{installFee,jdbcType=DECIMAL},
+            </if>
+            <if test="deliveryFee != null">
+                #{deliveryFee,jdbcType=DECIMAL},
+            </if>
+            <if test="otherPayShop != null">
+                #{otherPayShop,jdbcType=DECIMAL},
+            </if>
+            <if test="isOtherPaid != null">
+                #{isOtherPaid,jdbcType=BIT},
+            </if>
+            <if test="otherPaidDate != null">
+                #{otherPaidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="invAmont != null">
+                #{invAmont,jdbcType=DECIMAL},
+            </if>
+            <if test="invAddress != null">
+                #{invAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="invTaxNum != null">
+                #{invTaxNum,jdbcType=VARCHAR},
+            </if>
+            <if test="invBank != null">
+                #{invBank,jdbcType=VARCHAR},
+            </if>
+            <if test="invBankAccount != null">
+                #{invBankAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="invRemark != null">
+                #{invRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="orderType != null">
+                #{orderType,jdbcType=VARCHAR},
+            </if>
+            <if test="orderChannel != null">
+                #{orderChannel,jdbcType=VARCHAR},
+            </if>
+            <if test="refNo != null">
+                #{refNo,jdbcType=VARCHAR},
+            </if>
+            <if test="caseId != null">
+                #{caseId,jdbcType=CHAR},
+            </if>
+            <if test="commentStatus != null">
+                #{commentStatus,jdbcType=INTEGER},
+            </if>
+            <if test="reconciliation != null">
+                #{reconciliation,jdbcType=BIT},
+            </if>
+            <if test="reconcileTime != null">
+                #{reconcileTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="reconciledTime != null">
+                #{reconciledTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shopReconcileVoucher != null">
+                #{shopReconcileVoucher,jdbcType=INTEGER},
+            </if>
+            <if test="bankRecieveVoucher != null">
+                #{bankRecieveVoucher,jdbcType=INTEGER},
+            </if>
+            <if test="orderAddress != null">
+                #{orderAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="outStockDatetime != null">
+                #{outStockDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="incomeVoucher != null">
+                #{incomeVoucher,jdbcType=INTEGER},
+            </if>
+            <if test="costVoucher != null">
+                #{costVoucher,jdbcType=INTEGER},
+            </if>
+            <if test="orderProcessed != null">
+                #{orderProcessed,jdbcType=BIT},
+            </if>
+            <if test="orderProcessor != null">
+                #{orderProcessor,jdbcType=VARCHAR},
+            </if>
+            <if test="orderProcessTime != null">
+                #{orderProcessTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderProducts != null">
+                #{orderProducts,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryCompany != null">
+                #{deliveryCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="recheiveDate != null">
+                #{recheiveDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryAddressID != null">
+                #{deliveryAddressID,jdbcType=CHAR},
+            </if>
+            <if test="tranRefNum != null">
+                #{tranRefNum,jdbcType=VARCHAR},
+            </if>
+            <if test="checkMark != null">
+                #{checkMark,jdbcType=BIT},
+            </if>
+            <if test="checkComment != null">
+                #{checkComment,jdbcType=VARCHAR},
+            </if>
+            <if test="tuHuHandler != null">
+                #{tuHuHandler,jdbcType=VARCHAR},
+            </if>
+            <if test="handleComment != null">
+                #{handleComment,jdbcType=VARCHAR},
+            </if>
+            <if test="isHandle != null">
+                #{isHandle,jdbcType=BIT},
+            </if>
+            <if test="purchaseStatus != null">
+                #{purchaseStatus,jdbcType=INTEGER},
+            </if>
+            <if test="regionID != null">
+                #{regionID,jdbcType=INTEGER},
+            </if>
+            <if test="wareHouseID != null">
+                #{wareHouseID,jdbcType=INTEGER},
+            </if>
+            <if test="wareHouseName != null">
+                #{wareHouseName,jdbcType=VARCHAR},
+            </if>
+            <if test="refOrderState != null">
+                #{refOrderState,jdbcType=INTEGER},
+            </if>
+            <if test="buyAgainType != null">
+                #{buyAgainType,jdbcType=VARCHAR},
+            </if>
+            <if test="driverName != null">
+                #{driverName,jdbcType=VARCHAR},
+            </if>
+            <if test="submitDate != null">
+                #{submitDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isReminder != null">
+                #{isReminder,jdbcType=BIT},
+            </if>
+            <if test="isGift != null">
+                #{isGift,jdbcType=BIT},
+            </if>
+            <if test="getGiftDateTime != null">
+                #{getGiftDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="installOrderNo != null">
+                #{installOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="gotPayDate != null">
+                #{gotPayDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="promotionMoney != null">
+                #{promotionMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="bookSentDateTime != null">
+                #{bookSentDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sumPayDeduction != null">
+                #{sumPayDeduction,jdbcType=DECIMAL},
+            </if>
+            <if test="sumPayable != null">
+                #{sumPayable,jdbcType=DECIMAL},
+            </if>
+            <if test="sumListPrice != null">
+                #{sumListPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="sumManualDiscount != null">
+                #{sumManualDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="orderStockID != null">
+                #{orderStockID,jdbcType=INTEGER},
+            </if>
+            <if test="orderStockName != null">
+                #{orderStockName,jdbcType=VARCHAR},
+            </if>
+            <if test="recieveDatetime != null">
+                #{recieveDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payCategory != null">
+                #{payCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="orderProductType != null">
+                #{orderProductType,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeID != null">
+                #{tradeID,jdbcType=BIGINT},
+            </if>
+            <if test="sourceID != null">
+                #{sourceID,jdbcType=INTEGER},
+            </if>
+            <if test="sourceType != null">
+                #{sourceType,jdbcType=INTEGER},
+            </if>
+            <if test="systemRemark != null">
+                #{systemRemark,jdbcType=CLOB},
+            </if>
+            <if test="rowVersions != null">
+                #{rowVersions,jdbcType=BINARY},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ryt.demo.dal.mssql.entity.OrderWithBLOBs">
+        update tbl_Order
+        <set>
+            <if test="orderNo != null">
+                OrderNo = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="userID != null">
+                UserID = #{userID,jdbcType=CHAR},
+            </if>
+            <if test="userName != null">
+                UserName = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userTel != null">
+                UserTel = #{userTel,jdbcType=VARCHAR},
+            </if>
+            <if test="addressID != null">
+                AddressID = #{addressID,jdbcType=INTEGER},
+            </if>
+            <if test="carID != null">
+                CarID = #{carID,jdbcType=CHAR},
+            </if>
+            <if test="status != null">
+                Status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="orderDatetime != null">
+                OrderDatetime = #{orderDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bookDatetime != null">
+                BookDatetime = #{bookDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bookPeriod != null">
+                BookPeriod = #{bookPeriod,jdbcType=VARCHAR},
+            </if>
+            <if test="abst != null">
+                Abst = #{abst,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                Remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="owner != null">
+                Owner = #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="submitor != null">
+                Submitor = #{submitor,jdbcType=VARCHAR},
+            </if>
+            <if test="auditor != null">
+                Auditor = #{auditor,jdbcType=VARCHAR},
+            </if>
+            <if test="auditDatetime != null">
+                AuditDatetime = #{auditDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sumNum != null">
+                SumNum = #{sumNum,jdbcType=INTEGER},
+            </if>
+            <if test="sumMoney != null">
+                SumMoney = #{sumMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="sumMarkedMoney != null">
+                SumMarkedMoney = #{sumMarkedMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="sumDisMoney != null">
+                SumDisMoney = #{sumDisMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="shippingMoney != null">
+                ShippingMoney = #{shippingMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="installMoney != null">
+                InstallMoney = #{installMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="discountItem != null">
+                DiscountItem = #{discountItem,jdbcType=VARCHAR},
+            </if>
+            <if test="installType != null">
+                InstallType = #{installType,jdbcType=VARCHAR},
+            </if>
+            <if test="installShopID != null">
+                InstallShopID = #{installShopID,jdbcType=INTEGER},
+            </if>
+            <if test="installShop != null">
+                InstallShop = #{installShop,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryCode != null">
+                DeliveryCode = #{deliveryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="payStatus != null">
+                PayStatus = #{payStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="sumPaid != null">
+                SumPaid = #{sumPaid,jdbcType=DECIMAL},
+            </if>
+            <if test="payMothed != null">
+                PayMothed = #{payMothed,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentType != null">
+                PaymentType = #{paymentType,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseDatetime != null">
+                PurchaseDatetime = #{purchaseDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryType != null">
+                DeliveryType = #{deliveryType,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryStatus != null">
+                DeliveryStatus = #{deliveryStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryDatetime != null">
+                DeliveryDatetime = #{deliveryDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryConfirmor != null">
+                DeliveryConfirmor = #{deliveryConfirmor,jdbcType=VARCHAR},
+            </if>
+            <if test="installDatetime != null">
+                InstallDatetime = #{installDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="installStatus != null">
+                InstallStatus = #{installStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payToCPDate != null">
+                PayToCPDate = #{payToCPDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payInfo != null">
+                PayInfo = #{payInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceTitle != null">
+                InvoiceTitle = #{invoiceTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceType != null">
+                InvoiceType = #{invoiceType,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceStatus != null">
+                InvoiceStatus = #{invoiceStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceDeliveryCode != null">
+                InvoiceDeliveryCode = #{invoiceDeliveryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceAddTax != null">
+                InvoiceAddTax = #{invoiceAddTax,jdbcType=DECIMAL},
+            </if>
+            <if test="lastUpdateTime != null">
+                LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="carPlate != null">
+                CarPlate = #{carPlate,jdbcType=VARCHAR},
+            </if>
+            <if test="cost != null">
+                Cost = #{cost,jdbcType=DECIMAL},
+            </if>
+            <if test="installFee != null">
+                InstallFee = #{installFee,jdbcType=DECIMAL},
+            </if>
+            <if test="deliveryFee != null">
+                DeliveryFee = #{deliveryFee,jdbcType=DECIMAL},
+            </if>
+            <if test="otherPayShop != null">
+                OtherPayShop = #{otherPayShop,jdbcType=DECIMAL},
+            </if>
+            <if test="isOtherPaid != null">
+                IsOtherPaid = #{isOtherPaid,jdbcType=BIT},
+            </if>
+            <if test="otherPaidDate != null">
+                OtherPaidDate = #{otherPaidDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="invAmont != null">
+                InvAmont = #{invAmont,jdbcType=DECIMAL},
+            </if>
+            <if test="invAddress != null">
+                InvAddress = #{invAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="invTaxNum != null">
+                InvTaxNum = #{invTaxNum,jdbcType=VARCHAR},
+            </if>
+            <if test="invBank != null">
+                InvBank = #{invBank,jdbcType=VARCHAR},
+            </if>
+            <if test="invBankAccount != null">
+                InvBankAccount = #{invBankAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="invRemark != null">
+                InvRemark = #{invRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="orderType != null">
+                OrderType = #{orderType,jdbcType=VARCHAR},
+            </if>
+            <if test="orderChannel != null">
+                OrderChannel = #{orderChannel,jdbcType=VARCHAR},
+            </if>
+            <if test="refNo != null">
+                RefNo = #{refNo,jdbcType=VARCHAR},
+            </if>
+            <if test="caseId != null">
+                CaseId = #{caseId,jdbcType=CHAR},
+            </if>
+            <if test="commentStatus != null">
+                CommentStatus = #{commentStatus,jdbcType=INTEGER},
+            </if>
+            <if test="reconciliation != null">
+                Reconciliation = #{reconciliation,jdbcType=BIT},
+            </if>
+            <if test="reconcileTime != null">
+                ReconcileTime = #{reconcileTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="reconciledTime != null">
+                ReconciledTime = #{reconciledTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shopReconcileVoucher != null">
+                ShopReconcileVoucher = #{shopReconcileVoucher,jdbcType=INTEGER},
+            </if>
+            <if test="bankRecieveVoucher != null">
+                BankRecieveVoucher = #{bankRecieveVoucher,jdbcType=INTEGER},
+            </if>
+            <if test="orderAddress != null">
+                OrderAddress = #{orderAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="outStockDatetime != null">
+                OutStockDatetime = #{outStockDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="incomeVoucher != null">
+                IncomeVoucher = #{incomeVoucher,jdbcType=INTEGER},
+            </if>
+            <if test="costVoucher != null">
+                CostVoucher = #{costVoucher,jdbcType=INTEGER},
+            </if>
+            <if test="orderProcessed != null">
+                OrderProcessed = #{orderProcessed,jdbcType=BIT},
+            </if>
+            <if test="orderProcessor != null">
+                OrderProcessor = #{orderProcessor,jdbcType=VARCHAR},
+            </if>
+            <if test="orderProcessTime != null">
+                OrderProcessTime = #{orderProcessTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderProducts != null">
+                OrderProducts = #{orderProducts,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryCompany != null">
+                DeliveryCompany = #{deliveryCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="recheiveDate != null">
+                RecheiveDate = #{recheiveDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryAddressID != null">
+                DeliveryAddressID = #{deliveryAddressID,jdbcType=CHAR},
+            </if>
+            <if test="tranRefNum != null">
+                TranRefNum = #{tranRefNum,jdbcType=VARCHAR},
+            </if>
+            <if test="checkMark != null">
+                CheckMark = #{checkMark,jdbcType=BIT},
+            </if>
+            <if test="checkComment != null">
+                CheckComment = #{checkComment,jdbcType=VARCHAR},
+            </if>
+            <if test="tuHuHandler != null">
+                TuHuHandler = #{tuHuHandler,jdbcType=VARCHAR},
+            </if>
+            <if test="handleComment != null">
+                HandleComment = #{handleComment,jdbcType=VARCHAR},
+            </if>
+            <if test="isHandle != null">
+                IsHandle = #{isHandle,jdbcType=BIT},
+            </if>
+            <if test="purchaseStatus != null">
+                PurchaseStatus = #{purchaseStatus,jdbcType=INTEGER},
+            </if>
+            <if test="regionID != null">
+                RegionID = #{regionID,jdbcType=INTEGER},
+            </if>
+            <if test="wareHouseID != null">
+                WareHouseID = #{wareHouseID,jdbcType=INTEGER},
+            </if>
+            <if test="wareHouseName != null">
+                WareHouseName = #{wareHouseName,jdbcType=VARCHAR},
+            </if>
+            <if test="refOrderState != null">
+                RefOrderState = #{refOrderState,jdbcType=INTEGER},
+            </if>
+            <if test="buyAgainType != null">
+                BuyAgainType = #{buyAgainType,jdbcType=VARCHAR},
+            </if>
+            <if test="driverName != null">
+                DriverName = #{driverName,jdbcType=VARCHAR},
+            </if>
+            <if test="submitDate != null">
+                SubmitDate = #{submitDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isReminder != null">
+                IsReminder = #{isReminder,jdbcType=BIT},
+            </if>
+            <if test="isGift != null">
+                IsGift = #{isGift,jdbcType=BIT},
+            </if>
+            <if test="getGiftDateTime != null">
+                GetGiftDateTime = #{getGiftDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="installOrderNo != null">
+                InstallOrderNo = #{installOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="gotPayDate != null">
+                GotPayDate = #{gotPayDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="promotionMoney != null">
+                PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="bookSentDateTime != null">
+                BookSentDateTime = #{bookSentDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sumPayDeduction != null">
+                SumPayDeduction = #{sumPayDeduction,jdbcType=DECIMAL},
+            </if>
+            <if test="sumPayable != null">
+                SumPayable = #{sumPayable,jdbcType=DECIMAL},
+            </if>
+            <if test="sumListPrice != null">
+                SumListPrice = #{sumListPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="sumManualDiscount != null">
+                SumManualDiscount = #{sumManualDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="orderStockID != null">
+                OrderStockID = #{orderStockID,jdbcType=INTEGER},
+            </if>
+            <if test="orderStockName != null">
+                OrderStockName = #{orderStockName,jdbcType=VARCHAR},
+            </if>
+            <if test="recieveDatetime != null">
+                RecieveDatetime = #{recieveDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payCategory != null">
+                PayCategory = #{payCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="orderProductType != null">
+                OrderProductType = #{orderProductType,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeID != null">
+                TradeID = #{tradeID,jdbcType=BIGINT},
+            </if>
+            <if test="sourceID != null">
+                SourceID = #{sourceID,jdbcType=INTEGER},
+            </if>
+            <if test="sourceType != null">
+                SourceType = #{sourceType,jdbcType=INTEGER},
+            </if>
+            <if test="systemRemark != null">
+                SystemRemark = #{systemRemark,jdbcType=CLOB},
+            </if>
+            <if test="rowVersions != null">
+                RowVersions = #{rowVersions,jdbcType=BINARY},
+            </if>
+        </set>
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ryt.demo.dal.mssql.entity.OrderWithBLOBs">
+        update tbl_Order
+        set OrderNo = #{orderNo,jdbcType=VARCHAR},
+        UserID = #{userID,jdbcType=CHAR},
+        UserName = #{userName,jdbcType=VARCHAR},
+        UserTel = #{userTel,jdbcType=VARCHAR},
+        AddressID = #{addressID,jdbcType=INTEGER},
+        CarID = #{carID,jdbcType=CHAR},
+        Status = #{status,jdbcType=VARCHAR},
+        OrderDatetime = #{orderDatetime,jdbcType=TIMESTAMP},
+        BookDatetime = #{bookDatetime,jdbcType=TIMESTAMP},
+        BookPeriod = #{bookPeriod,jdbcType=VARCHAR},
+        Abst = #{abst,jdbcType=VARCHAR},
+        Remark = #{remark,jdbcType=VARCHAR},
+        Owner = #{owner,jdbcType=VARCHAR},
+        Submitor = #{submitor,jdbcType=VARCHAR},
+        Auditor = #{auditor,jdbcType=VARCHAR},
+        AuditDatetime = #{auditDatetime,jdbcType=TIMESTAMP},
+        SumNum = #{sumNum,jdbcType=INTEGER},
+        SumMoney = #{sumMoney,jdbcType=DECIMAL},
+        SumMarkedMoney = #{sumMarkedMoney,jdbcType=DECIMAL},
+        SumDisMoney = #{sumDisMoney,jdbcType=DECIMAL},
+        ShippingMoney = #{shippingMoney,jdbcType=DECIMAL},
+        InstallMoney = #{installMoney,jdbcType=DECIMAL},
+        DiscountItem = #{discountItem,jdbcType=VARCHAR},
+        InstallType = #{installType,jdbcType=VARCHAR},
+        InstallShopID = #{installShopID,jdbcType=INTEGER},
+        InstallShop = #{installShop,jdbcType=VARCHAR},
+        DeliveryCode = #{deliveryCode,jdbcType=VARCHAR},
+        PayStatus = #{payStatus,jdbcType=VARCHAR},
+        SumPaid = #{sumPaid,jdbcType=DECIMAL},
+        PayMothed = #{payMothed,jdbcType=VARCHAR},
+        PaymentType = #{paymentType,jdbcType=VARCHAR},
+        PurchaseDatetime = #{purchaseDatetime,jdbcType=TIMESTAMP},
+        DeliveryType = #{deliveryType,jdbcType=VARCHAR},
+        DeliveryStatus = #{deliveryStatus,jdbcType=VARCHAR},
+        DeliveryDatetime = #{deliveryDatetime,jdbcType=TIMESTAMP},
+        DeliveryConfirmor = #{deliveryConfirmor,jdbcType=VARCHAR},
+        InstallDatetime = #{installDatetime,jdbcType=TIMESTAMP},
+        InstallStatus = #{installStatus,jdbcType=VARCHAR},
+        PayToCPDate = #{payToCPDate,jdbcType=TIMESTAMP},
+        PayInfo = #{payInfo,jdbcType=VARCHAR},
+        InvoiceTitle = #{invoiceTitle,jdbcType=VARCHAR},
+        InvoiceType = #{invoiceType,jdbcType=VARCHAR},
+        InvoiceStatus = #{invoiceStatus,jdbcType=VARCHAR},
+        InvoiceDeliveryCode = #{invoiceDeliveryCode,jdbcType=VARCHAR},
+        InvoiceAddTax = #{invoiceAddTax,jdbcType=DECIMAL},
+        LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+        CarPlate = #{carPlate,jdbcType=VARCHAR},
+        Cost = #{cost,jdbcType=DECIMAL},
+        InstallFee = #{installFee,jdbcType=DECIMAL},
+        DeliveryFee = #{deliveryFee,jdbcType=DECIMAL},
+        OtherPayShop = #{otherPayShop,jdbcType=DECIMAL},
+        IsOtherPaid = #{isOtherPaid,jdbcType=BIT},
+        OtherPaidDate = #{otherPaidDate,jdbcType=TIMESTAMP},
+        InvAmont = #{invAmont,jdbcType=DECIMAL},
+        InvAddress = #{invAddress,jdbcType=VARCHAR},
+        InvTaxNum = #{invTaxNum,jdbcType=VARCHAR},
+        InvBank = #{invBank,jdbcType=VARCHAR},
+        InvBankAccount = #{invBankAccount,jdbcType=VARCHAR},
+        InvRemark = #{invRemark,jdbcType=VARCHAR},
+        OrderType = #{orderType,jdbcType=VARCHAR},
+        OrderChannel = #{orderChannel,jdbcType=VARCHAR},
+        RefNo = #{refNo,jdbcType=VARCHAR},
+        CaseId = #{caseId,jdbcType=CHAR},
+        CommentStatus = #{commentStatus,jdbcType=INTEGER},
+        Reconciliation = #{reconciliation,jdbcType=BIT},
+        ReconcileTime = #{reconcileTime,jdbcType=TIMESTAMP},
+        ReconciledTime = #{reconciledTime,jdbcType=TIMESTAMP},
+        ShopReconcileVoucher = #{shopReconcileVoucher,jdbcType=INTEGER},
+        BankRecieveVoucher = #{bankRecieveVoucher,jdbcType=INTEGER},
+        OrderAddress = #{orderAddress,jdbcType=VARCHAR},
+        OutStockDatetime = #{outStockDatetime,jdbcType=TIMESTAMP},
+        IncomeVoucher = #{incomeVoucher,jdbcType=INTEGER},
+        CostVoucher = #{costVoucher,jdbcType=INTEGER},
+        OrderProcessed = #{orderProcessed,jdbcType=BIT},
+        OrderProcessor = #{orderProcessor,jdbcType=VARCHAR},
+        OrderProcessTime = #{orderProcessTime,jdbcType=TIMESTAMP},
+        OrderProducts = #{orderProducts,jdbcType=VARCHAR},
+        DeliveryCompany = #{deliveryCompany,jdbcType=VARCHAR},
+        RecheiveDate = #{recheiveDate,jdbcType=TIMESTAMP},
+        DeliveryAddressID = #{deliveryAddressID,jdbcType=CHAR},
+        TranRefNum = #{tranRefNum,jdbcType=VARCHAR},
+        CheckMark = #{checkMark,jdbcType=BIT},
+        CheckComment = #{checkComment,jdbcType=VARCHAR},
+        TuHuHandler = #{tuHuHandler,jdbcType=VARCHAR},
+        HandleComment = #{handleComment,jdbcType=VARCHAR},
+        IsHandle = #{isHandle,jdbcType=BIT},
+        PurchaseStatus = #{purchaseStatus,jdbcType=INTEGER},
+        RegionID = #{regionID,jdbcType=INTEGER},
+        WareHouseID = #{wareHouseID,jdbcType=INTEGER},
+        WareHouseName = #{wareHouseName,jdbcType=VARCHAR},
+        RefOrderState = #{refOrderState,jdbcType=INTEGER},
+        BuyAgainType = #{buyAgainType,jdbcType=VARCHAR},
+        DriverName = #{driverName,jdbcType=VARCHAR},
+        SubmitDate = #{submitDate,jdbcType=TIMESTAMP},
+        IsReminder = #{isReminder,jdbcType=BIT},
+        IsGift = #{isGift,jdbcType=BIT},
+        GetGiftDateTime = #{getGiftDateTime,jdbcType=TIMESTAMP},
+        InstallOrderNo = #{installOrderNo,jdbcType=VARCHAR},
+        GotPayDate = #{gotPayDate,jdbcType=TIMESTAMP},
+        PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+        BookSentDateTime = #{bookSentDateTime,jdbcType=TIMESTAMP},
+        SumPayDeduction = #{sumPayDeduction,jdbcType=DECIMAL},
+        SumPayable = #{sumPayable,jdbcType=DECIMAL},
+        SumListPrice = #{sumListPrice,jdbcType=DECIMAL},
+        SumManualDiscount = #{sumManualDiscount,jdbcType=DECIMAL},
+        OrderStockID = #{orderStockID,jdbcType=INTEGER},
+        OrderStockName = #{orderStockName,jdbcType=VARCHAR},
+        RecieveDatetime = #{recieveDatetime,jdbcType=TIMESTAMP},
+        PayCategory = #{payCategory,jdbcType=VARCHAR},
+        OrderProductType = #{orderProductType,jdbcType=VARCHAR},
+        TradeID = #{tradeID,jdbcType=BIGINT},
+        SourceID = #{sourceID,jdbcType=INTEGER},
+        SourceType = #{sourceType,jdbcType=INTEGER},
+        SystemRemark = #{systemRemark,jdbcType=CLOB},
+        RowVersions = #{rowVersions,jdbcType=BINARY}
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ryt.demo.dal.mssql.entity.Order">
+        update tbl_Order
+        set OrderNo = #{orderNo,jdbcType=VARCHAR},
+        UserID = #{userID,jdbcType=CHAR},
+        UserName = #{userName,jdbcType=VARCHAR},
+        UserTel = #{userTel,jdbcType=VARCHAR},
+        AddressID = #{addressID,jdbcType=INTEGER},
+        CarID = #{carID,jdbcType=CHAR},
+        Status = #{status,jdbcType=VARCHAR},
+        OrderDatetime = #{orderDatetime,jdbcType=TIMESTAMP},
+        BookDatetime = #{bookDatetime,jdbcType=TIMESTAMP},
+        BookPeriod = #{bookPeriod,jdbcType=VARCHAR},
+        Abst = #{abst,jdbcType=VARCHAR},
+        Remark = #{remark,jdbcType=VARCHAR},
+        Owner = #{owner,jdbcType=VARCHAR},
+        Submitor = #{submitor,jdbcType=VARCHAR},
+        Auditor = #{auditor,jdbcType=VARCHAR},
+        AuditDatetime = #{auditDatetime,jdbcType=TIMESTAMP},
+        SumNum = #{sumNum,jdbcType=INTEGER},
+        SumMoney = #{sumMoney,jdbcType=DECIMAL},
+        SumMarkedMoney = #{sumMarkedMoney,jdbcType=DECIMAL},
+        SumDisMoney = #{sumDisMoney,jdbcType=DECIMAL},
+        ShippingMoney = #{shippingMoney,jdbcType=DECIMAL},
+        InstallMoney = #{installMoney,jdbcType=DECIMAL},
+        DiscountItem = #{discountItem,jdbcType=VARCHAR},
+        InstallType = #{installType,jdbcType=VARCHAR},
+        InstallShopID = #{installShopID,jdbcType=INTEGER},
+        InstallShop = #{installShop,jdbcType=VARCHAR},
+        DeliveryCode = #{deliveryCode,jdbcType=VARCHAR},
+        PayStatus = #{payStatus,jdbcType=VARCHAR},
+        SumPaid = #{sumPaid,jdbcType=DECIMAL},
+        PayMothed = #{payMothed,jdbcType=VARCHAR},
+        PaymentType = #{paymentType,jdbcType=VARCHAR},
+        PurchaseDatetime = #{purchaseDatetime,jdbcType=TIMESTAMP},
+        DeliveryType = #{deliveryType,jdbcType=VARCHAR},
+        DeliveryStatus = #{deliveryStatus,jdbcType=VARCHAR},
+        DeliveryDatetime = #{deliveryDatetime,jdbcType=TIMESTAMP},
+        DeliveryConfirmor = #{deliveryConfirmor,jdbcType=VARCHAR},
+        InstallDatetime = #{installDatetime,jdbcType=TIMESTAMP},
+        InstallStatus = #{installStatus,jdbcType=VARCHAR},
+        PayToCPDate = #{payToCPDate,jdbcType=TIMESTAMP},
+        PayInfo = #{payInfo,jdbcType=VARCHAR},
+        InvoiceTitle = #{invoiceTitle,jdbcType=VARCHAR},
+        InvoiceType = #{invoiceType,jdbcType=VARCHAR},
+        InvoiceStatus = #{invoiceStatus,jdbcType=VARCHAR},
+        InvoiceDeliveryCode = #{invoiceDeliveryCode,jdbcType=VARCHAR},
+        InvoiceAddTax = #{invoiceAddTax,jdbcType=DECIMAL},
+        LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+        CarPlate = #{carPlate,jdbcType=VARCHAR},
+        Cost = #{cost,jdbcType=DECIMAL},
+        InstallFee = #{installFee,jdbcType=DECIMAL},
+        DeliveryFee = #{deliveryFee,jdbcType=DECIMAL},
+        OtherPayShop = #{otherPayShop,jdbcType=DECIMAL},
+        IsOtherPaid = #{isOtherPaid,jdbcType=BIT},
+        OtherPaidDate = #{otherPaidDate,jdbcType=TIMESTAMP},
+        InvAmont = #{invAmont,jdbcType=DECIMAL},
+        InvAddress = #{invAddress,jdbcType=VARCHAR},
+        InvTaxNum = #{invTaxNum,jdbcType=VARCHAR},
+        InvBank = #{invBank,jdbcType=VARCHAR},
+        InvBankAccount = #{invBankAccount,jdbcType=VARCHAR},
+        InvRemark = #{invRemark,jdbcType=VARCHAR},
+        OrderType = #{orderType,jdbcType=VARCHAR},
+        OrderChannel = #{orderChannel,jdbcType=VARCHAR},
+        RefNo = #{refNo,jdbcType=VARCHAR},
+        CaseId = #{caseId,jdbcType=CHAR},
+        CommentStatus = #{commentStatus,jdbcType=INTEGER},
+        Reconciliation = #{reconciliation,jdbcType=BIT},
+        ReconcileTime = #{reconcileTime,jdbcType=TIMESTAMP},
+        ReconciledTime = #{reconciledTime,jdbcType=TIMESTAMP},
+        ShopReconcileVoucher = #{shopReconcileVoucher,jdbcType=INTEGER},
+        BankRecieveVoucher = #{bankRecieveVoucher,jdbcType=INTEGER},
+        OrderAddress = #{orderAddress,jdbcType=VARCHAR},
+        OutStockDatetime = #{outStockDatetime,jdbcType=TIMESTAMP},
+        IncomeVoucher = #{incomeVoucher,jdbcType=INTEGER},
+        CostVoucher = #{costVoucher,jdbcType=INTEGER},
+        OrderProcessed = #{orderProcessed,jdbcType=BIT},
+        OrderProcessor = #{orderProcessor,jdbcType=VARCHAR},
+        OrderProcessTime = #{orderProcessTime,jdbcType=TIMESTAMP},
+        OrderProducts = #{orderProducts,jdbcType=VARCHAR},
+        DeliveryCompany = #{deliveryCompany,jdbcType=VARCHAR},
+        RecheiveDate = #{recheiveDate,jdbcType=TIMESTAMP},
+        DeliveryAddressID = #{deliveryAddressID,jdbcType=CHAR},
+        TranRefNum = #{tranRefNum,jdbcType=VARCHAR},
+        CheckMark = #{checkMark,jdbcType=BIT},
+        CheckComment = #{checkComment,jdbcType=VARCHAR},
+        TuHuHandler = #{tuHuHandler,jdbcType=VARCHAR},
+        HandleComment = #{handleComment,jdbcType=VARCHAR},
+        IsHandle = #{isHandle,jdbcType=BIT},
+        PurchaseStatus = #{purchaseStatus,jdbcType=INTEGER},
+        RegionID = #{regionID,jdbcType=INTEGER},
+        WareHouseID = #{wareHouseID,jdbcType=INTEGER},
+        WareHouseName = #{wareHouseName,jdbcType=VARCHAR},
+        RefOrderState = #{refOrderState,jdbcType=INTEGER},
+        BuyAgainType = #{buyAgainType,jdbcType=VARCHAR},
+        DriverName = #{driverName,jdbcType=VARCHAR},
+        SubmitDate = #{submitDate,jdbcType=TIMESTAMP},
+        IsReminder = #{isReminder,jdbcType=BIT},
+        IsGift = #{isGift,jdbcType=BIT},
+        GetGiftDateTime = #{getGiftDateTime,jdbcType=TIMESTAMP},
+        InstallOrderNo = #{installOrderNo,jdbcType=VARCHAR},
+        GotPayDate = #{gotPayDate,jdbcType=TIMESTAMP},
+        PromotionMoney = #{promotionMoney,jdbcType=DECIMAL},
+        BookSentDateTime = #{bookSentDateTime,jdbcType=TIMESTAMP},
+        SumPayDeduction = #{sumPayDeduction,jdbcType=DECIMAL},
+        SumPayable = #{sumPayable,jdbcType=DECIMAL},
+        SumListPrice = #{sumListPrice,jdbcType=DECIMAL},
+        SumManualDiscount = #{sumManualDiscount,jdbcType=DECIMAL},
+        OrderStockID = #{orderStockID,jdbcType=INTEGER},
+        OrderStockName = #{orderStockName,jdbcType=VARCHAR},
+        RecieveDatetime = #{recieveDatetime,jdbcType=TIMESTAMP},
+        PayCategory = #{payCategory,jdbcType=VARCHAR},
+        OrderProductType = #{orderProductType,jdbcType=VARCHAR},
+        TradeID = #{tradeID,jdbcType=BIGINT},
+        SourceID = #{sourceID,jdbcType=INTEGER},
+        SourceType = #{sourceType,jdbcType=INTEGER}
+        where PKID = #{PKID,jdbcType=INTEGER}
+    </update>
+</mapper>
